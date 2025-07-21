@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import { Account, User as AuthUser } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "@/utils/db";
@@ -14,33 +13,39 @@ export const authOptions: any = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: any) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Missing email or password");
+        }
+
         try {
           const user = await prisma.user.findFirst({
-            where: {
-              email: credentials.email,
-            },
+            where: { email: credentials.email },
           });
-          if (user) {
+
+          if (user && user.password) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,
-              user.password!
+              user.password
             );
+
             if (isPasswordCorrect) {
               return user;
             }
           }
-          return null;
-        } catch (err: any) {
-          throw new Error(err);
+
+          throw new Error("Invalid credentials");
+        } catch (err) {
+          throw new Error("Authentication failed");
         }
       },
     }),
   ],
   callbacks: {
-    async signIn({ user, account }: { user: AuthUser; account: Account }) {
-      if (account?.provider == "credentials") {
+    async signIn({ user, account }: { user: any; account: any }) {
+      if (account?.provider === "credentials") {
         return true;
       }
+      return false;
     },
   },
 };
