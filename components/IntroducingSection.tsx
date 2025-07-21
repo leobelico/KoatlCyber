@@ -57,6 +57,31 @@ const ServicesSection = () => {
       ]
     },
     {
+      name: "Instalaciones",
+      services: [
+        {
+          title: "Cableado Estructurado",
+          description: "Instalación profesional de redes cableadas para oficinas y hogares",
+          icon: "🔌"
+        },
+        {
+          title: "Cámaras de Seguridad",
+          description: "Sistemas de videovigilancia con monitoreo remoto",
+          icon: "📹"
+        },
+        {
+          title: "Redes WiFi",
+          description: "Optimización de cobertura inalámbrica en todos tus espacios",
+          icon: "📶"
+        },
+        {
+          title: "Centrales Telefónicas",
+          description: "Instalación de sistemas de comunicación empresarial",
+          icon: "☎️"
+        }
+      ]
+    },
+    {
       name: "Mantenimiento",
       services: [
         {
@@ -92,20 +117,20 @@ const ServicesSection = () => {
       <section className="bg-[#F9FCF8] py-16 px-4 relative z-20 -mt-px">
         <div className="max-w-screen-2xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-[#070B15] mb-4">
-            SOLUCIONES DIGITALES COMPLETAS
+            SOLUCIONES TECNOLÓGICAS INTEGRALES
           </h2>
           <p className="text-xl text-center text-[#4A5568] mb-12 max-w-3xl mx-auto">
-            Desde el diseño inicial hasta el mantenimiento continuo, cubrimos todas las necesidades de tu presencia online
+            Desde desarrollo web hasta instalaciones físicas, cubrimos todas tus necesidades tecnológicas
           </p>
           
           {/* Pestañas de categorías */}
           <div className="flex justify-center mb-8">
-            <div className="inline-flex bg-white rounded-lg shadow-md p-1 border border-[#E2E8F0]">
+            <div className="inline-flex bg-white rounded-lg shadow-md p-1 border border-[#E2E8F0] overflow-x-auto">
               {serviceCategories.map((category, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveTab(index)}
-                  className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-md font-medium transition-colors whitespace-nowrap ${
                     activeTab === index 
                       ? 'bg-[#98EFDC] text-[#070B15] shadow-sm' 
                       : 'text-[#4A5568] hover:bg-[#EDF2F7]'
@@ -133,20 +158,23 @@ const ServicesSection = () => {
             ))}
           </div>
 
-          {/* Botón opcional (puedes activarlo si necesitas) */}
+          {/* Botón de contacto */}
           <div className="text-center mt-12">
-            <button className="bg-[#070B15] text-[#F9FCF8] font-bold px-8 py-3 rounded-lg hover:bg-[#1A202C] transition-colors inline-flex items-center border-2 border-transparent hover:border-[#98EFDC]">
-              <span>Ver todos los servicios</span>
+            <a 
+              href="#" 
+              className="bg-[#070B15] text-[#F9FCF8] font-bold px-8 py-3 rounded-lg hover:bg-[#1A202C] transition-colors inline-flex items-center border-2 border-transparent hover:border-[#98EFDC]"
+            >
+              <span>Cotizar un servicio</span>
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"></path>
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </section>
       
       {/* Transición inferior - ajuste perfecto */}
-      <div className="h-20 w-full bg-gradient-to-b from-[#F9FCF8] via-[#F9FCF8] to-[#070B15] relative z-10 -mt-px"></div>
+ 
     </>
   );
 };

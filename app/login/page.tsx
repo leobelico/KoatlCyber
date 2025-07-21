@@ -57,9 +57,9 @@ const LoginPage = () => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div className="bg-white">
+    <div className="bg-[#F9FCF8]">
       <SectionTitle title="Inicio de sesión" path="Inicio | Login" />
-      <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 bg-white">
+      <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 bg-[#F9FCF8]">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-6 text-center text-2xl font-normal leading-9 tracking-tight text-gray-900">
           Inicia sesion en nuestro sitio

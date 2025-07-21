@@ -84,3 +84,15 @@ model Wishlist {
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
 }
+model Review {
+  id          Int      @id @default(autoincrement())
+  clientName  String   @map("client_name")
+  reviewText  String   @map("review_text")
+  rating      Int
+  photos      Json     // Aquí usas Json para guardar arrays
+  date        DateTime @default(now())
+  type        String
+  projectUrl  String?  @map("project_url")
+  features    Json     // También como Json
+  isActive    Boolean  @default(true)
+}

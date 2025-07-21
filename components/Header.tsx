@@ -13,7 +13,6 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import HeaderTop from "./HeaderTop";
 import Image from "next/image";
-import SearchInput from "./SearchInput";
 import Link from "next/link";
 import { FaBell } from "react-icons/fa6";
 
@@ -75,14 +74,21 @@ const Header = () => {
     <header className="bg-[#070B15]">
       <HeaderTop />
       {pathname.startsWith("/admin") === false && (
-        <div className="h-32 bg-[#070B15] flex items-center justify-between px-16 max-[1320px]:px-16 max-md:px-6 max-lg:flex-col max-lg:gap-y-7 max-lg:justify-center max-lg:h-60 max-w-screen-2xl mx-auto">
+       <div className="py-4 bg-[#070B15] flex items-center justify-between px-16 max-[1320px]:px-16 max-md:px-6 max-lg:flex-col max-lg:gap-y-7 max-lg:justify-center max-w-screen-2xl mx-auto">
           <Link href="/">
-            <img src="/koatlcyber.jpg" width={150} height={150} alt="singitronic logo" className="relative right-5 max-[1023px]:w-56" />
+            <Image
+              src="/koatlcyber.jpg"
+              alt="singitronic logo"
+              width={300}
+              height={150}
+              className="max-h-[100px] w-auto object-contain"
+              priority
+            />
           </Link>
-          <SearchInput />
+
           <div className="flex gap-x-10">
             <HeartElement wishQuantity={wishQuantity} />
-            <CartElement />
+           
           </div>
         </div>
       )}

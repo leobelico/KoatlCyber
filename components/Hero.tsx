@@ -26,6 +26,8 @@ const HeroCarousel = () => {
     service: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const slides: Slide[] = [
     {
@@ -65,18 +67,46 @@ const HeroCarousel = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
-    setShowForm(false);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: ''
-    });
-    alert('¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.');
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          subject: getFormTitle(),
+          to: 'ventas@koatlcyber.com',
+          from: 'leonardo@koatlcyber.com'
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        });
+        setTimeout(() => {
+          setShowForm(false);
+        }, 2000);
+      } else {
+        throw new Error('Error al enviar el correo');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getFormTitle = () => {
@@ -86,9 +116,9 @@ const HeroCarousel = () => {
     if (!actionButton || !actionButton.type) return 'Formulario de Contacto';
     
     switch(actionButton.type) {
-      case 'quote': return 'Solicitar Cotización';
-      case 'support': return 'Contactar Soporte Técnico';
-      case 'maintenance': return 'Solicitar Mantenimiento';
+      case 'quote': return 'Solicitud de Cotización';
+      case 'support': return 'Solicitud de Soporte Técnico';
+      case 'maintenance': return 'Solicitud de Mantenimiento';
       default: return 'Formulario de Contacto';
     }
   };
@@ -262,11 +292,24 @@ const HeroCarousel = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full bg-[#98EFDC] text-[#070B15] font-bold py-2 px-4 rounded-md hover:bg-[#83d8c4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#98EFDC] transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#98EFDC] text-[#070B15] font-bold py-2 px-4 rounded-md hover:bg-[#83d8c4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#98EFDC] transition-colors disabled:opacity-50"
                   >
-                    Enviar Solicitud
+                    {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
                   </button>
                 </div>
+
+                {submitStatus === 'success' && (
+                  <div className="p-3 bg-green-100 text-green-700 rounded-md">
+                    ¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-3 bg-red-100 text-red-700 rounded-md">
+                    Hubo un error al enviar tu solicitud. Por favor intenta nuevamente.
+                  </div>
+                )}
               </form>
             </div>
           )}
