@@ -7,9 +7,8 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -27,12 +26,15 @@ model Product {
   category       Category                 @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   customerOrders customer_order_product[]
   Wishlist       Wishlist[]
+  images         Image[]                  // <--- agregado
 }
 
 model Image {
-  imageID   String @id @default(uuid())
+  imageID   String  @id @default(uuid())
   productID String
+  product   Product @relation(fields: [productID], references: [id], onDelete: Cascade)
   image     String
+  // images    Image[] <--- eliminado
 }
 
 model User {
