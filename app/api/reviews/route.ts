@@ -21,34 +21,26 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
-    
-    // Extraer campos del formulario
+
     const clientName = formData.get('clientName') as string;
     const reviewText = formData.get('reviewText') as string;
     const rating = Number(formData.get('rating'));
     const type = formData.get('type') as 'web' | 'instalacion';
     const projectUrl = formData.get('projectUrl') as string;
     const features = JSON.parse(formData.get('features') as string || '[]');
-    
-    // Procesar imágenes
+
     const photosFiles = formData.getAll('photos') as File[];
     const photosUrls: string[] = [];
 
     for (const file of photosFiles) {
       if (file.size > 0) {
-        // Convertir a Uint8Array directamente
         const bytes = await file.arrayBuffer();
         const uint8Array = new Uint8Array(bytes);
-        
-        // Crear nombre único para el archivo
         const timestamp = Date.now();
         const ext = file.name.split('.').pop();
         const filename = `review-${timestamp}.${ext}`;
-        
         const uploadDir = path.join(process.cwd(), 'public', 'uploads');
         const filePath = path.join(uploadDir, filename);
-        
-        // Escribir usando Uint8Array directamente
         await writeFile(filePath, uint8Array);
         photosUrls.push(`/uploads/${filename}`);
       }
