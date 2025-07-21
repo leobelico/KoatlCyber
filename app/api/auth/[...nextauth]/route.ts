@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "@/utils/db";
 
-export const authOptions: any = {
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -12,43 +12,37 @@ export const authOptions: any = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any) {
+      async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Missing email or password");
         }
 
-        try {
-          const user = await prisma.user.findFirst({
-            where: { email: credentials.email },
-          });
+        const user = await prisma.user.findFirst({
+          where: { email: credentials.email },
+        });
 
-          if (user && user.password) {
-            const isPasswordCorrect = await bcrypt.compare(
-              credentials.password,
-              user.password
-            );
-
-            if (isPasswordCorrect) {
-              return user;
-            }
-          }
-
+        if (!user || !user.password) {
           throw new Error("Invalid credentials");
-        } catch (err) {
-          throw new Error("Authentication failed");
         }
+
+        const isPasswordCorrect = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isPasswordCorrect) {
+          throw new Error("Invalid credentials");
+        }
+
+        return user;
       },
     }),
   ],
   callbacks: {
-    async signIn({ user, account }: { user: any; account: any }) {
-      if (account?.provider === "credentials") {
-        return true;
-      }
-      return false;
+    async signIn({ account }) {
+      return account?.provider === "credentials";
     },
   },
-};
+});
 
-export const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
