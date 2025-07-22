@@ -14,15 +14,15 @@ const handler = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password");
+          return null; // Mejor retornar null para fallo, no throw Error
         }
 
-        const user = await prisma.user.findFirst({
+        const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
 
         if (!user || !user.password) {
-          throw new Error("Invalid credentials");
+          return null;
         }
 
         const isPasswordCorrect = await bcrypt.compare(
@@ -31,10 +31,15 @@ const handler = NextAuth({
         );
 
         if (!isPasswordCorrect) {
-          throw new Error("Invalid credentials");
+          return null;
         }
 
-        return user;
+        // Retorna solo los campos que quieres que estén en la sesión
+        return {
+          id: user.id,
+          email: user.email,
+          role: user.role ?? null,
+        };
       },
     }),
   ],
@@ -42,6 +47,7 @@ const handler = NextAuth({
     async signIn({ account }) {
       return account?.provider === "credentials";
     },
+    // Puedes agregar aquí callbacks como jwt o session si quieres controlar datos de sesión
   },
 });
 
