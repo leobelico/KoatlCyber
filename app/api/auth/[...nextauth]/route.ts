@@ -1,10 +1,11 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+// app/api/auth/[...nextauth]/route.ts
+import NextAuth, { type DefaultSession, type AuthOptions } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "@/utils/db";
+import type { JWT } from "next-auth/jwt";
 
-// Extensión completa de tipos
+// Extender tipos de NextAuth
 declare module "next-auth" {
   interface User {
     id: string;
@@ -13,40 +14,33 @@ declare module "next-auth" {
     role?: string | null;
   }
   
-  interface Session {
+  interface Session extends DefaultSession {
     user: {
       id: string;
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
+      email: string;
       role?: string | null;
-    };
+    } & DefaultSession["user"];
   }
 }
 
-export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+// Configuración de autenticación
+const authOptions: AuthOptions = {
   providers: [
-    CredentialsProvider({
-      id: "credentials",
+    Credentials({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-
         try {
+          if (!credentials?.email || !credentials?.password) return null;
+
           const user = await prisma.user.findUnique({
             where: { email: credentials.email },
           });
 
-          if (!user || !user.password) {
-            return null;
-          }
+          if (!user?.password) return null;
 
           const isValid = await bcrypt.compare(
             credentials.password,
@@ -59,16 +53,12 @@ export const authOptions: NextAuthOptions = {
             role: user.role ?? null,
           } : null;
         } catch (error) {
-          console.error("Authorization error:", error);
+          console.error("Error en autorización:", error);
           return null;
         }
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    strategy: "jwt",
-  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -80,7 +70,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
-        session.user.role = token.role as string | null;
+        session.user.role = token.role as string | null | undefined;
       }
       return session;
     },
@@ -88,8 +78,11 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
 };
 
+// Manejador de rutas
 const handler = NextAuth(authOptions);
+
 export { handler as GET, handler as POST };
