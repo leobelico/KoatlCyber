@@ -1,12 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -23,18 +18,17 @@ model Product {
   manufacturer   String
   inStock        Int                      @default(1)
   categoryId     String
+  images         Image[]
   category       Category                 @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  customerOrders customer_order_product[]
   Wishlist       Wishlist[]
-  images         Image[]                  // <--- agregado
+  customerOrders customer_order_product[]
 }
 
 model Image {
   imageID   String  @id @default(uuid())
   productID String
-  product   Product @relation(fields: [productID], references: [id], onDelete: Cascade)
   image     String
-  // images    Image[] <--- eliminado
+  product   Product @relation(fields: [productID], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -66,35 +60,36 @@ model Customer_order {
 
 model customer_order_product {
   id              String         @id @default(uuid())
-  customerOrder   Customer_order @relation(fields: [customerOrderId], references: [id])
   customerOrderId String
-  product         Product        @relation(fields: [productId], references: [id])
   productId       String
   quantity        Int
+  customerOrder   Customer_order @relation(fields: [customerOrderId], references: [id])
+  product         Product        @relation(fields: [productId], references: [id])
 }
 
 model Category {
   id       String    @id @default(uuid())
   name     String    @unique
-  products Product[] // Define a one-to-many relationship
+  products Product[]
 }
 
 model Wishlist {
   id        String  @id @default(uuid())
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
 model Review {
-  id          Int      @id @default(autoincrement())
-  clientName  String   @map("client_name")
-  reviewText  String   @map("review_text")
-  rating      Int
-  photos      Json     // Aquí usas Json para guardar arrays
-  date        DateTime @default(now())
-  type        String
-  projectUrl  String?  @map("project_url")
-  features    Json     // También como Json
-  isActive    Boolean  @default(true)
+  id         Int      @id @default(autoincrement())
+  clientName String   @map("client_name")
+  reviewText String   @map("review_text")
+  rating     Int
+  photos     Json
+  date       DateTime @default(now())
+  type       String
+  projectUrl String?  @map("project_url")
+  features   Json
+  isActive   Boolean  @default(true)
 }
