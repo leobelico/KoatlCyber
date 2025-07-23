@@ -42,7 +42,7 @@ const Footer = () => {
         {/* Logo y descripción */}
         <div className="flex flex-col items-center text-center">
           <Image
-            src="/footer2.png"
+            src="../public/footer2.png"
             alt="Logo de la empresa"
             width={260}
             height={120}
