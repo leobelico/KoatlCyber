@@ -15,6 +15,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "KoatlCyber",
   description: "Bienvenido a KoatlCyber, tu tienda de electrónica en línea",
+  icons: {
+  icon: "/koatlcyber.ico", // 👈 aquí enlazas tu favicon
+  },
 };
 
 export default async function RootLayout({
