@@ -1,7 +1,6 @@
 import prisma from "@/utils/db";
 import { NextResponse } from "next/server";
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import cloudinary from "@/lib/cloudinary";
 
 export async function GET() {
   try {
@@ -35,14 +34,22 @@ export async function POST(request: Request) {
     for (const file of photosFiles) {
       if (file.size > 0) {
         const bytes = await file.arrayBuffer();
-        const uint8Array = new Uint8Array(bytes);
-        const timestamp = Date.now();
-        const ext = file.name.split('.').pop();
-        const filename = `review-${timestamp}.${ext}`;
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-        const filePath = path.join(uploadDir, filename);
-        await writeFile(filePath, uint8Array);
-        photosUrls.push(`/uploads/${filename}`);
+        const buffer = Buffer.from(bytes);
+
+        const uploadResult = await new Promise<string>((resolve, reject) => {
+          cloudinary.uploader.upload_stream(
+            {
+              folder: "reviews",
+              resource_type: "image",
+            },
+            (error, result) => {
+              if (error) reject(error);
+              else resolve(result?.secure_url || '');
+            }
+          ).end(buffer);
+        });
+
+        photosUrls.push(uploadResult);
       }
     }
 
