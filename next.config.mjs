@@ -8,16 +8,22 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config) => {
-    // Solución para Prisma
-    config.externals = [...(config.externals || []), {
-      '@prisma/client': '@prisma/client',
-      '.prisma/client': '.prisma/client'
-    }];
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = config.externals || [];
+      config.externals.push({
+        '@prisma/client': '@prisma/client',
+        '.prisma/client': '.prisma/client',
+        prisma: 'prisma'
+      });
+    }
     return config;
   },
   experimental: {
-    serverComponentsExternalPackages: ["@prisma/client"],
+    serverComponentsExternalPackages: [
+      "@prisma/client", 
+      "prisma"
+    ],
   }
 };
 

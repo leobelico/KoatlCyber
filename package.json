@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate --schema=./prisma/schema.prisma",
+    "build": "prisma generate --schema=./prisma/schema.prisma && next build",
+    "vercel-build": "prisma generate --schema=./prisma/schema.prisma && next build"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
