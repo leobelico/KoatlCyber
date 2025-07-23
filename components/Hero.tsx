@@ -132,18 +132,18 @@ const HeroCarousel = () => {
   };
 
   return (
-    <div className="h-[700px] w-full bg-[#070B15] max-lg:h-[900px] max-md:h-[750px] relative overflow-hidden">
+    <div className="h-[700px] w-full bg-[#070B15] max-lg:h-auto relative overflow-hidden">
       {/* Controles del carrusel */}
       <button 
         onClick={prevSlide}
-        className="absolute left-5 top-1/2 transform -translate-y-1/2 z-10 bg-white/30 text-white p-2 rounded-full hover:bg-white/50 transition-colors"
+        className="absolute left-5 top-1/2 transform -translate-y-1/2 z-10 bg-white/30 text-white p-2 rounded-full hover:bg-white/50 transition-colors max-lg:top-[40%]"
         aria-label="Slide anterior"
       >
         &lt;
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-5 top-1/2 transform -translate-y-1/2 z-10 bg-white/30 text-white p-2 rounded-full hover:bg-white/50 transition-colors"
+        className="absolute right-5 top-1/2 transform -translate-y-1/2 z-10 bg-white/30 text-white p-2 rounded-full hover:bg-white/50 transition-colors max-lg:top-[40%]"
         aria-label="Slide siguiente"
       >
         &gt;
@@ -162,8 +162,8 @@ const HeroCarousel = () => {
       </div>
 
       {/* Contenido del slide actual */}
-      <div className="grid grid-cols-3 items-center justify-items-center px-10 gap-x-10 max-w-screen-2xl mx-auto h-full max-lg:grid-cols-1 max-lg:py-10 max-lg:gap-y-10">
-        <div className="flex flex-col gap-y-5 max-lg:order-last col-span-2">
+      <div className="grid grid-cols-3 items-center justify-items-center px-10 gap-x-10 max-w-screen-2xl mx-auto h-full max-lg:grid-cols-1 max-lg:py-10 max-lg:gap-y-6 max-lg:px-5">
+        <div className={`flex flex-col gap-y-5 ${showForm ? 'max-lg:order-first' : 'max-lg:order-last'} col-span-2 max-lg:col-span-1`}>
           <h1 className="text-6xl text-white font-bold mb-3 max-xl:text-5xl max-md:text-4xl max-sm:text-3xl">
             {slides[activeSlide].title}
           </h1>
@@ -187,8 +187,8 @@ const HeroCarousel = () => {
           </div>
         </div>
         
-        {/* Contenedor de imagen/formulario */}
-        <div className="relative max-md:w-[300px] max-md:h-[300px] max-sm:h-[250px] max-sm:w-[250px] w-auto h-auto md:block hidden">
+        {/* Contenedor de imagen (solo en desktop) */}
+        <div className="relative w-auto h-auto lg:block hidden">
           {!showForm ? (
             <Image
               src={slides[activeSlide].image}
@@ -314,6 +314,125 @@ const HeroCarousel = () => {
             </div>
           )}
         </div>
+
+        {/* Formulario móvil (solo se muestra cuando showForm es true) */}
+        {showForm && (
+          <div className="lg:hidden w-full col-span-1 mt-4">
+            <div className="bg-[#F9FCF8] p-6 rounded-lg shadow-xl w-full overflow-y-auto border-2 border-[#98EFDC] relative">
+              <button 
+                onClick={() => setShowForm(false)}
+                className="absolute top-3 right-3 text-gray-600 hover:text-[#070B15] transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              
+              <h3 className="text-2xl font-bold text-[#070B15] mb-4 border-b-2 border-[#98EFDC] pb-2">
+                {getFormTitle()}
+              </h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name-mobile" className="block text-sm font-medium text-[#070B15]">Nombre Completo *</label>
+                  <input
+                    type="text"
+                    id="name-mobile"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full border border-[#98EFDC] rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#98EFDC] focus:border-[#98EFDC] bg-white text-[#070B15]"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="email-mobile" className="block text-sm font-medium text-[#070B15]">Email *</label>
+                  <input
+                    type="email"
+                    id="email-mobile"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full border border-[#98EFDC] rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#98EFDC] focus:border-[#98EFDC] bg-white text-[#070B15]"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="phone-mobile" className="block text-sm font-medium text-[#070B15]">Teléfono</label>
+                  <input
+                    type="tel"
+                    id="phone-mobile"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full border border-[#98EFDC] rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#98EFDC] focus:border-[#98EFDC] bg-white text-[#070B15]"
+                  />
+                </div>
+                
+                {activeSlide === 0 && (
+                  <div>
+                    <label htmlFor="service-mobile" className="block text-sm font-medium text-[#070B15]">Tipo de Proyecto *</label>
+                    <select
+                      id="service-mobile"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1 block w-full border border-[#98EFDC] rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#98EFDC] focus:border-[#98EFDC] bg-white text-[#070B15]"
+                    >
+                      <option value="">Selecciona una opción</option>
+                      <option value="landing">Landing Page</option>
+                      <option value="ecommerce">Tienda Online</option>
+                      <option value="corporate">Web Corporativa</option>
+                      <option value="custom">Aplicación Web Personalizada</option>
+                    </select>
+                  </div>
+                )}
+                
+                <div>
+                  <label htmlFor="message-mobile" className="block text-sm font-medium text-[#070B15]">
+                    {activeSlide === 0 ? 'Describe tu proyecto' : 
+                     activeSlide === 1 ? 'Describe tu problema técnico' : 
+                     'Describe tus necesidades de mantenimiento'} *
+                  </label>
+                  <textarea
+                    id="message-mobile"
+                    name="message"
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full border border-[#98EFDC] rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#98EFDC] focus:border-[#98EFDC] bg-white text-[#070B15]"
+                  />
+                </div>
+                
+                <div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#98EFDC] text-[#070B15] font-bold py-2 px-4 rounded-md hover:bg-[#83d8c4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#98EFDC] transition-colors disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
+                  </button>
+                </div>
+
+                {submitStatus === 'success' && (
+                  <div className="p-3 bg-green-100 text-green-700 rounded-md">
+                    ¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-3 bg-red-100 text-red-700 rounded-md">
+                    Hubo un error al enviar tu solicitud. Por favor intenta nuevamente.
+                  </div>
+                )}
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
