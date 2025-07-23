@@ -9,7 +9,7 @@ const nextConfig = {
     ],
   },
   webpack: (config) => {
-    // Solución crítica para Prisma
+    // Solución para Prisma
     config.externals = [...(config.externals || []), {
       '@prisma/client': '@prisma/client',
       '.prisma/client': '.prisma/client'
