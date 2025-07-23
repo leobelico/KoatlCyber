@@ -188,7 +188,7 @@ const HeroCarousel = () => {
         </div>
         
         {/* Contenedor de imagen/formulario */}
-        <div className="relative max-md:w-[300px] max-md:h-[300px] max-sm:h-[250px] max-sm:w-[250px] w-auto h-auto">
+        <div className="relative max-md:w-[300px] max-md:h-[300px] max-sm:h-[250px] max-sm:w-[250px] w-auto h-auto md:block hidden">
           {!showForm ? (
             <Image
               src={slides[activeSlide].image}
