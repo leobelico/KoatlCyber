@@ -5,14 +5,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'placehold.co',
-        port: ""
       },
     ],
   },
-  // Añade estas configuraciones para Prisma:
   webpack: (config) => {
-    // Excluir Prisma del bundle del cliente
-    config.externals = [...(config.externals || []), { 
+    // Solución crítica para Prisma
+    config.externals = [...(config.externals || []), {
       '@prisma/client': '@prisma/client',
       '.prisma/client': '.prisma/client'
     }];
