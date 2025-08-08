@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 const team = [
   {
@@ -17,17 +18,17 @@ const team = [
     role: "Backend Developer",
     imageUrl: "/equipo/carlos.webp",
   },
-    {
+  {
     name: "Cesar Hernandez",
     role: "Tester & QA",
     imageUrl: "/equipo/cesar.webp",
   },
-      {
+  {
     name: "Angel Lizardo",
     role: "Soporte Técnico",
     imageUrl: "/equipo/angel.webp",
   },
-      {
+  {
     name: "Ana Laura Araiza",
     role: "Frontend Developer",
     imageUrl: "/equipo/ana.webp",
@@ -50,6 +51,25 @@ const Footer = () => {
           <p className="mt-4 text-sm text-gray-600 max-w-md">
             Creamos soluciones digitales que impulsan tu negocio.
           </p>
+        </div>
+
+        {/* Enlaces rápidos */}
+        <div className="mt-8">
+          <h3 className="text-center text-lg font-bold text-gray-900 mb-4">Enlaces rápidos</h3>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link href="/acerca-de-nosotros" className="text-sm text-gray-600 hover:text-gray-900">
+              Acerca de nosotros
+            </Link>
+            <Link href="/servicios" className="text-sm text-gray-600 hover:text-gray-900">
+              Nuestros servicios
+            </Link>
+            <Link href="/terminos-y-condiciones" className="text-sm text-gray-600 hover:text-gray-900">
+              Términos y condiciones
+            </Link>
+            <Link href="/politica-de-privacidad" className="text-sm text-gray-600 hover:text-gray-900">
+              Política de privacidad
+            </Link>
+          </div>
         </div>
 
         {/* Nuestro equipo */}
