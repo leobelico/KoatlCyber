@@ -23,7 +23,7 @@ interface ProductInWishlist {
   price: number;
   image: string;
   slug: string;
-  stockAvailabillity: boolean;
+  stockAvailabillity: boolean | number; // Permite ambos tipos
 }
 
 const WishItem = ({
@@ -34,6 +34,7 @@ const WishItem = ({
   slug,
   stockAvailabillity,
 }: ProductInWishlist) => {
+  
   const { data: session, status } = useSession();
   const { removeFromWishlist } = useWishlistStore();
   const router = useRouter();
