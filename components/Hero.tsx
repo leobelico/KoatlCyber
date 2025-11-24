@@ -5,7 +5,7 @@ import React, { useState } from "react";
 type SlideButton = {
   text: string;
   action: () => void;
-  type?: 'quote' | 'support' | 'maintenance' | 'plans';
+  type?: 'quote' | 'support' | 'maintenance' | 'plans' | 'installation';
 };
 
 type Slide = {
@@ -31,184 +31,244 @@ const HeroCarousel = () => {
 
   // ================= PLANES =================
   const webPlans = [
-  {
-    name: "Landing Page Express",
-    price: "$6,999",
-    originalPrice: "$6,999",
-    features: [
-      "✅ Hasta 2 páginas diseñadas",
-      "✅ 100% Mobile Friendly",
-      "✅ Formulario de contacto",
-      "✅ Hosting + Dominio .com.mx 1 año",
-      "✅ SSL Security Certificate",
-      "✅ Entrega en 5 días hábiles",
-      "✅ Garantía 30 días"
-    ],
-    popular: false,
-    bgColor: "bg-[#98EFDC]",
-    textColor: "text-[#070B15]",
-    borderColor: "border-[#070B15]",
-    ctaText: "Perfecto para Emprendedores"
-  },
-  {
-    name: "Web Corporativa PRO",
-    price: "$19,999",
-    originalPrice: "$19,999",
-    features: [
-      "🔥 5-8 páginas personalizadas",
-      "🔥 CMS (Gestiona tu contenido)",
-      "🔥 SEO On-Page básico incluido",
-      "🔥 Blog integrado",
-      "🔥 Diseño responsive premium",
-      "🔥 Integración redes sociales",
-      "🔥 Soporte técnico 6 meses",
-      "🔥 Capacitación incluida"
-    ],
-    popular: true,
-    bgColor: "bg-[#070B15]",
-    textColor: "text-[#98EFDC]",
-    borderColor: "border-[#98EFDC]",
-    ctaText: "Ideal para PYMES en SLP"
-  },
-  {
-    name: "Tienda Online PREMIUM",
-    price: "$39,999",
-    originalPrice: "$39,999",
-    features: [
-      "🚀 Hasta 100 productos",
-      "🚀 Pasarelas de pago (Mercado Pago, Stripe)",
-      "🚀 Carrito de compras avanzado",
-      "🚀 SSL Premium + Seguridad",
-      "🚀 Backups automáticos diarios",
-      "🚀 Certificado SSL EV",
-      "🚀 Integración con WhatsApp Business",
-      "🚀 Soporte prioritario 12 meses"
-    ],
-    popular: false,
-    bgColor: "bg-[#98EFDC]",
-    textColor: "text-[#070B15]",
-    borderColor: "border-[#070B15]",
-    ctaText: "Solución E-commerce Completa"
-  }
-];
+    {
+      name: "Landing Page Express",
+      price: "$6,999",
+      originalPrice: "$6,999",
+      features: [
+        "✅ Hasta 2 páginas diseñadas",
+        "✅ 100% Mobile Friendly",
+        "✅ Formulario de contacto",
+        "✅ Hosting + Dominio .com.mx 1 año",
+        "✅ SSL Security Certificate",
+        "✅ Entrega en 5 días hábiles",
+        "✅ Garantía 30 días"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Perfecto para Emprendedores"
+    },
+    {
+      name: "Web Corporativa PRO",
+      price: "$19,999",
+      originalPrice: "$19,999",
+      features: [
+        "🔥 5-8 páginas personalizadas",
+        "🔥 CMS (Gestiona tu contenido)",
+        "🔥 SEO On-Page básico incluido",
+        "🔥 Blog integrado",
+        "🔥 Diseño responsive premium",
+        "🔥 Integración redes sociales",
+        "🔥 Soporte técnico 6 meses",
+        "🔥 Capacitación incluida"
+      ],
+      popular: true,
+      bgColor: "bg-[#070B15]",
+      textColor: "text-[#98EFDC]",
+      borderColor: "border-[#98EFDC]",
+      ctaText: "Ideal para PYMES en SLP"
+    },
+    {
+      name: "Tienda Online PREMIUM",
+      price: "$39,999",
+      originalPrice: "$39,999",
+      features: [
+        "🚀 Hasta 100 productos",
+        "🚀 Pasarelas de pago (Mercado Pago, Stripe)",
+        "🚀 Carrito de compras avanzado",
+        "🚀 SSL Premium + Seguridad",
+        "🚀 Backups automáticos diarios",
+        "🚀 Certificado SSL EV",
+        "🚀 Integración con WhatsApp Business",
+        "🚀 Soporte prioritario 12 meses"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Solución E-commerce Completa"
+    }
+  ];
 
-const supportPlans = [
-  {
-    name: "Soporte Esencial",
-    price: "$2,499/mes",
-    features: [
-      "🛠️ 5 horas de soporte remoto",
-      "🛠️ Asistencia TeamViewer/AnyDesk",
-      "🛠️ Respuesta en 8 horas hábiles",
-      "🛠️ Mantenimiento preventivo mensual",
-      "🛠️ Diagnóstico gratuito",
-      "🛠️ Soporte vía WhatsApp/Email",
-      "🛠️ Actualizaciones de seguridad"
-    ],
-    popular: false,
-    bgColor: "bg-[#98EFDC]",
-    textColor: "text-[#070B15]",
-    borderColor: "border-[#070B15]",
-    ctaText: "Para Home Office y Freelancers"
-  },
-  {
-    name: "Soporte VIP Empresarial",
-    price: "$4,999/mes",
-    features: [
-      "🔥 15 horas de soporte mensual",
-      "🔥 2 visitas presenciales en SLP*",
-      "🔥 Respuesta en 2 horas hábiles",
-      "🔥 Monitoreo proactivo 24/7",
-      "🔥 Prioridad en atención",
-      "🔥 Backup en la nube incluido",
-      "🔥 Soporte telefónico inmediato",
-      "🔥 Reportes de rendimiento"
-    ],
-    popular: true,
-    bgColor: "bg-[#070B15]",
-    textColor: "text-[#98EFDC]",
-    borderColor: "border-[#98EFDC]",
-    ctaText: "Recomendado para PYMES SLP"
-  },
-  {
-    name: "Soporte CORPORATIVO",
-    price: "$11,999/mes",
-    features: [
-      "🚀 Soporte remoto ilimitado",
-      "🚀 Respuesta inmediata (<15 min)",
-      "🚀 Técnico dedicado en SLP",
-      "🚀 Visitas presenciales ilimitadas*",
-      "🚀 Reportes ejecutivos mensuales",
-      "🚀 Prevención avanzada de fallos",
-      "🚀 Auditoría de seguridad trimestral",
-      "🚀 Garantía de continuidad"
-    ],
-    popular: false,
-    bgColor: "bg-[#98EFDC]",
-    textColor: "text-[#070B15]",
-    borderColor: "border-[#070B15]",
-    ctaText: "Para Empresas con Operaciones Críticas"
-  }
-];
+  const supportPlans = [
+    {
+      name: "Soporte Esencial",
+      price: "$2,499/mes",
+      features: [
+        "🛠️ 5 horas de soporte remoto",
+        "🛠️ Asistencia TeamViewer/AnyDesk",
+        "🛠️ Respuesta en 8 horas hábiles",
+        "🛠️ Mantenimiento preventivo mensual",
+        "🛠️ Diagnóstico gratuito",
+        "🛠️ Soporte vía WhatsApp/Email",
+        "🛠️ Actualizaciones de seguridad"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Para Home Office y Freelancers"
+    },
+    {
+      name: "Soporte VIP Empresarial",
+      price: "$4,999/mes",
+      features: [
+        "🔥 15 horas de soporte mensual",
+        "🔥 2 visitas presenciales en SLP*",
+        "🔥 Respuesta en 2 horas hábiles",
+        "🔥 Monitoreo proactivo 24/7",
+        "🔥 Prioridad en atención",
+        "🔥 Backup en la nube incluido",
+        "🔥 Soporte telefónico inmediato",
+        "🔥 Reportes de rendimiento"
+      ],
+      popular: true,
+      bgColor: "bg-[#070B15]",
+      textColor: "text-[#98EFDC]",
+      borderColor: "border-[#98EFDC]",
+      ctaText: "Recomendado para PYMES SLP"
+    },
+    {
+      name: "Soporte CORPORATIVO",
+      price: "$11,999/mes",
+      features: [
+        "🚀 Soporte remoto ilimitado",
+        "🚀 Respuesta inmediata (<15 min)",
+        "🚀 Técnico dedicado en SLP",
+        "🚀 Visitas presenciales ilimitadas*",
+        "🚀 Reportes ejecutivos mensuales",
+        "🚀 Prevención avanzada de fallos",
+        "🚀 Auditoría de seguridad trimestral",
+        "🚀 Garantía de continuidad"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Para Empresas con Operaciones Críticas"
+    }
+  ];
 
-const maintenancePlans = [
-  {
-    name: "Mantenimiento Básico Web",
-    price: "$1,499/mes",
-    features: [
-      "🔧 Actualizaciones de seguridad",
-      "🔧 Backups semanales",
-      "🔧 Monitoreo de disponibilidad",
-      "🔧 Soporte por email (24h)",
-      "🔧 Optimización básica mensual",
-      "🔧 SSL siempre activo",
-      "🔧 Hosting administrado"
-    ],
-    popular: false,
-    bgColor: "bg-[#98EFDC]",
-    textColor: "text-[#070B15]",
-    borderColor: "border-[#070B15]",
-    ctaText: "Para Sitios Web Personales"
-  },
-  {
-    name: "Mantenimiento PRO",
-    price: "$3,999/mes",
-    features: [
-      "🔥 Actualizaciones automáticas",
-      "🔥 SEO y rendimiento incluido",
-      "🔥 Respuesta en 4 horas hábiles",
-      "🔥 Seguridad web premium",
-      "🔥 Optimización continua",
-      "🔥 Backups diarios + nube",
-      "🔥 Certificado SSL premium",
-      "🔥 Análisis de tráfico mensual"
-    ],
-    popular: true,
-    bgColor: "bg-[#070B15]",
-    textColor: "text-[#98EFDC]",
-    borderColor: "border-[#98EFDC]",
-    ctaText: "Ideal para Negocios en SLP"
-  },
-  {
-    name: "Mantenimiento GOLD",
-    price: "$7,999/mes",
-    features: [
-      "🚀 Monitoreo 24/7 avanzado",
-      "🚀 Actualizaciones de contenido**",
-      "🚀 Backups en tiempo real",
-      "🚀 Soporte telefónico prioritario",
-      "🚀 Seguridad enterprise",
-      "🚀 CDN incluido",
-      "🚀 Reportes personalizados",
-      "🚀 Garantía 99.9% uptime"
-    ],
-    popular: false,
-    bgColor: "bg-[#98EFDC]",
-    textColor: "text-[#070B15]",
-    borderColor: "border-[#070B15]",
-    ctaText: "Máxima Seguridad y Rendimiento"
-  }
-];
+  const maintenancePlans = [
+    {
+      name: "Mantenimiento Básico Web",
+      price: "$1,499/mes",
+      features: [
+        "🔧 Actualizaciones de seguridad",
+        "🔧 Backups semanales",
+        "🔧 Monitoreo de disponibilidad",
+        "🔧 Soporte por email (24h)",
+        "🔧 Optimización básica mensual",
+        "🔧 SSL siempre activo",
+        "🔧 Hosting administrado"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Para Sitios Web Personales"
+    },
+    {
+      name: "Mantenimiento PRO",
+      price: "$3,999/mes",
+      features: [
+        "🔥 Actualizaciones automáticas",
+        "🔥 SEO y rendimiento incluido",
+        "🔥 Respuesta en 4 horas hábiles",
+        "🔥 Seguridad web premium",
+        "🔥 Optimización continua",
+        "🔥 Backups diarios + nube",
+        "🔥 Certificado SSL premium",
+        "🔥 Análisis de tráfico mensual"
+      ],
+      popular: true,
+      bgColor: "bg-[#070B15]",
+      textColor: "text-[#98EFDC]",
+      borderColor: "border-[#98EFDC]",
+      ctaText: "Ideal para Negocios en SLP"
+    },
+    {
+      name: "Mantenimiento GOLD",
+      price: "$7,999/mes",
+      features: [
+        "🚀 Monitoreo 24/7 avanzado",
+        "🚀 Actualizaciones de contenido**",
+        "🚀 Backups en tiempo real",
+        "🚀 Soporte telefónico prioritario",
+        "🚀 Seguridad enterprise",
+        "🚀 CDN incluido",
+        "🚀 Reportes personalizados",
+        "🚀 Garantía 99.9% uptime"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Máxima Seguridad y Rendimiento"
+    }
+  ];
+
+  // ================= PLANES DE INSTALACIÓN =================
+  const installationPlans = [
+    {
+      name: "Instalación Básica",
+      price: "$8,999",
+      features: [
+        "📡 Instalación de red LAN básica",
+        "📡 Configuración de router/switch",
+        "📡 Hasta 5 puntos de red",
+        "📡 Cableado estructurado básico",
+        "📡 Pruebas de conectividad",
+        "📡 Garantía 3 meses",
+        "📡 Asesoría técnica inicial"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Para Hogares y Oficinas Pequeñas"
+    },
+    {
+      name: "Instalación PROFESIONAL",
+      price: "$24,999",
+      features: [
+        "🔥 Red LAN empresarial completa",
+        "🔥 Instalación de cámaras de seguridad",
+        "🔥 Hasta 20 puntos de red",
+        "🔥 Switch administrable",
+        "🔥 Cableado categoría 6/6A",
+        "🔥 Sistema de vigilancia 4 cámaras",
+        "🔥 Configuración VLAN",
+        "🔥 Garantía 12 meses"
+      ],
+      popular: true,
+      bgColor: "bg-[#070B15]",
+      textColor: "text-[#98EFDC]",
+      borderColor: "border-[#98EFDC]",
+      ctaText: "Ideal para Negocios y Empresas"
+    },
+    {
+      name: "Solución INTEGRAL",
+      price: "$49,999",
+      features: [
+        "🚀 Infraestructura completa de red",
+        "🚀 Sistema de cámaras IP 8+ canales",
+        "🚀 Puntos de red ilimitados",
+        "🚀 Switch enterprise + WiFi 6",
+        "🚀 Cableado estructurado profesional",
+        "🚀 Servidor local + NAS",
+        "🚀 Monitoreo remoto 24/7",
+        "🚀 Garantía 24 meses"
+      ],
+      popular: false,
+      bgColor: "bg-[#98EFDC]",
+      textColor: "text-[#070B15]",
+      borderColor: "border-[#070B15]",
+      ctaText: "Solución Empresarial Completa"
+    }
+  ];
 
   const slides: Slide[] = [
     {
@@ -235,6 +295,15 @@ const maintenancePlans = [
       image: "/mantenimiento.jpg",
       buttons: [
         { text: "SOLICITAR MANTENIMIENTO", action: () => { setShowForm(true); setShowPlans(false); }, type: 'maintenance' },
+        { text: "VER PLANES", action: () => { setShowPlans(true); setShowForm(false); }, type: 'plans' }
+      ]
+    },
+    {
+      title: "INSTALACIÓN DE REDES Y CÁMARAS DE SEGURIDAD",
+      description: "Instalamos infraestructura de red profesional, cámaras de vigilancia, switches y sistemas LAN completos para hogares y empresas en San Luis Potosí.",
+      image: "/instalacion-redes.jpg",
+      buttons: [
+        { text: "SOLICITAR INSTALACIÓN", action: () => { setShowForm(true); setShowPlans(false); }, type: 'installation' },
         { text: "VER PLANES", action: () => { setShowPlans(true); setShowForm(false); }, type: 'plans' }
       ]
     }
@@ -300,6 +369,7 @@ const maintenancePlans = [
       case 'quote': return 'Cotización de Página Web';
       case 'support': return 'Solicitud de Soporte Técnico';
       case 'maintenance': return 'Solicitud de Mantenimiento';
+      case 'installation': return 'Solicitud de Instalación de Redes';
       default: return 'Formulario de Contacto';
     }
   };
@@ -332,6 +402,10 @@ const maintenancePlans = [
       case 2: 
         currentPlans = maintenancePlans;
         serviceName = "MANTENIMIENTO";
+        break;
+      case 3:
+        currentPlans = installationPlans;
+        serviceName = "INSTALACIÓN";
         break;
       default: 
         currentPlans = webPlans;
@@ -481,12 +555,35 @@ const maintenancePlans = [
             </select>
           </div>
         )}
+
+        {activeSlide === 3 && (
+          <div>
+            <label htmlFor="service" className="block text-sm font-medium text-[#070B15]">Tipo de Instalación *</label>
+            <select
+              id="service"
+              name="service"
+              value={formData.service}
+              onChange={handleInputChange}
+              required
+              className="mt-1 block w-full border border-[#98EFDC] rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#98EFDC] focus:border-[#98EFDC] bg-white text-[#070B15]"
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="red-lan">Instalación de Red LAN</option>
+              <option value="camaras-seguridad">Cámaras de Seguridad</option>
+              <option value="switch-red">Configuración de Switch</option>
+              <option value="wifi-empresarial">WiFi Empresarial</option>
+              <option value="infraestructura-completa">Infraestructura Completa</option>
+              <option value="otro">Otro (Especificar en mensaje)</option>
+            </select>
+          </div>
+        )}
         
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-[#070B15]">
             {activeSlide === 0 ? 'Describe tu proyecto' : 
               activeSlide === 1 ? 'Describe tu problema técnico' : 
-              'Describe tus necesidades de mantenimiento'} *
+              activeSlide === 2 ? 'Describe tus necesidades de mantenimiento' :
+              'Describe tus necesidades de instalación (metros cuadrados, número de cámaras, puntos de red, etc.)'} *
           </label>
           <textarea
             id="message"
