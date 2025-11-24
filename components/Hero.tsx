@@ -33,7 +33,7 @@ const HeroCarousel = () => {
   const webPlans = [
   {
     name: "Landing Page Express",
-    price: "$4,999",
+    price: "$6,999",
     originalPrice: "$6,999",
     features: [
       "✅ Hasta 2 páginas diseñadas",
@@ -52,7 +52,7 @@ const HeroCarousel = () => {
   },
   {
     name: "Web Corporativa PRO",
-    price: "$14,999",
+    price: "$19,999",
     originalPrice: "$19,999",
     features: [
       "🔥 5-8 páginas personalizadas",
@@ -72,7 +72,7 @@ const HeroCarousel = () => {
   },
   {
     name: "Tienda Online PREMIUM",
-    price: "$29,999",
+    price: "$39,999",
     originalPrice: "$39,999",
     features: [
       "🚀 Hasta 100 productos",
@@ -95,7 +95,7 @@ const HeroCarousel = () => {
 const supportPlans = [
   {
     name: "Soporte Esencial",
-    price: "$1,499/mes",
+    price: "$2,499/mes",
     features: [
       "🛠️ 5 horas de soporte remoto",
       "🛠️ Asistencia TeamViewer/AnyDesk",
@@ -113,7 +113,7 @@ const supportPlans = [
   },
   {
     name: "Soporte VIP Empresarial",
-    price: "$3,999/mes",
+    price: "$4,999/mes",
     features: [
       "🔥 15 horas de soporte mensual",
       "🔥 2 visitas presenciales en SLP*",
@@ -132,7 +132,7 @@ const supportPlans = [
   },
   {
     name: "Soporte CORPORATIVO",
-    price: "$8,999/mes",
+    price: "$11,999/mes",
     features: [
       "🚀 Soporte remoto ilimitado",
       "🚀 Respuesta inmediata (<15 min)",
@@ -154,7 +154,7 @@ const supportPlans = [
 const maintenancePlans = [
   {
     name: "Mantenimiento Básico Web",
-    price: "$899/mes",
+    price: "$1,499/mes",
     features: [
       "🔧 Actualizaciones de seguridad",
       "🔧 Backups semanales",
@@ -172,7 +172,7 @@ const maintenancePlans = [
   },
   {
     name: "Mantenimiento PRO",
-    price: "$2,999/mes",
+    price: "$3,999/mes",
     features: [
       "🔥 Actualizaciones automáticas",
       "🔥 SEO y rendimiento incluido",
@@ -191,7 +191,7 @@ const maintenancePlans = [
   },
   {
     name: "Mantenimiento GOLD",
-    price: "$5,999/mes",
+    price: "$7,999/mes",
     features: [
       "🚀 Monitoreo 24/7 avanzado",
       "🚀 Actualizaciones de contenido**",
