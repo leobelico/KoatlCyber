@@ -2,7 +2,7 @@
 // Role of the component: Wishlist item component for wishlist page
 // Name of the component: WishItem.tsx
 // Developer: Aleksandar Kuzmanovic
-// Version: 1.0
+// Version: 1.1
 // Component call: <WishItem id={id} title={title} price={price} image={image} slug={slug} stockAvailabillity={stockAvailabillity} />
 // Input parameters: ProductInWishlist interface
 // Output: single wishlist item on the wishlist page
@@ -10,18 +10,20 @@
 
 "use client";
 import { useWishlistStore } from "@/app/_zustand/wishlistStore";
-import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import toast from "react-hot-toast";
 import { FaHeartCrack } from "react-icons/fa6";
-import { deleteWishItem } from "@/app/actions";
 import { useSession } from "next-auth/react";
 
-interface wishItemStateTrackers {
-  isWishItemDeleted: boolean;
-  setIsWishItemDeleted: any;
+interface ProductInWishlist {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  slug: string;
+  stockAvailabillity: boolean;
 }
 
 const WishItem = ({
@@ -41,36 +43,46 @@ const WishItem = ({
     router.push(`/product/${slug}`);
   };
 
-  const getUserByEmail = async () => {
+  const getUserByEmail = useCallback(async () => {
     if (session?.user?.email) {
-      fetch(`http://localhost:3001/api/users/email/${session?.user?.email}`, {
-        cache: "no-store",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUserId(data?.id);
+      try {
+        const response = await fetch(`http://localhost:3001/api/users/email/${session.user.email}`, {
+          cache: "no-store",
         });
+        const data = await response.json();
+        setUserId(data?.id);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+        toast.error("Error loading user data");
+      }
     }
-  };
+  }, [session?.user?.email]); // Dependencies here
 
   const deleteItemFromWishlist = async (productId: string) => {
-    
     if (userId) {
-
-      fetch(`http://localhost:3001/api/wishlist/${userId}/${productId}`, {method: "DELETE"}).then(
-        (response) => {
+      try {
+        const response = await fetch(`http://localhost:3001/api/wishlist/${userId}/${productId}`, {
+          method: "DELETE"
+        });
+        
+        if (response.ok) {
           removeFromWishlist(productId);
           toast.success("Item removed from your wishlist");
+        } else {
+          toast.error("Failed to remove item from wishlist");
         }
-      );
-    }else{
+      } catch (error) {
+        console.error("Error deleting wishlist item:", error);
+        toast.error("Error removing item from wishlist");
+      }
+    } else {
       toast.error("You need to be logged in to perform this action");
     }
   };
 
   useEffect(() => {
     getUserByEmail();
-  }, [session?.user?.email]);
+  }, [getUserByEmail]); // Now includes all dependencies
 
   return (
     <tr className="hover:bg-gray-100 cursor-pointer">
@@ -108,12 +120,12 @@ const WishItem = ({
         )}
       </td>
       <td>
-        <button className="btn btn-xs bg-blue-500 text-white hover:text-blue-500 border border-blue-500 hover:bg-white hover:text-blue-500 text-sm">
+        <button 
+          className="btn btn-xs bg-blue-500 text-white hover:text-blue-500 border border-blue-500 hover:bg-white hover:text-blue-500 text-sm"
+          onClick={() => deleteItemFromWishlist(id)}
+        >
           <FaHeartCrack />
-          <span
-            className="max-sm:hidden"
-            onClick={() => deleteItemFromWishlist(id)}
-          >
+          <span className="max-sm:hidden">
             remove from the wishlist
           </span>
         </button>
