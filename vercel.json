@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "distDir": ".next",
+        "includeFiles": ["prisma/schema.prisma"]
+      }
+    }
+  ],
+  "build": {
+    "env": {
+      "PRISMA_SKIP_POSTINSTALL_GENERATE": "false",
+      "PRISMA_FORCE_NAPI": "true"
+    }
+  }
+}

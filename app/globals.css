@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #070b15;
+  --mint: #98efdc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050810;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2540;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #98efdc;
+}
+
+@layer components {
+  /* Fondo de cuadrícula tipo "blueprint" */
+  .bg-cyber-grid {
+    background-image:
+      linear-gradient(rgba(152, 239, 220, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(152, 239, 220, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .bg-cyber-glow {
+    background:
+      radial-gradient(60% 50% at 80% 0%, rgba(152, 239, 220, 0.14), transparent 70%),
+      radial-gradient(50% 40% at 0% 100%, rgba(56, 120, 255, 0.12), transparent 70%);
+  }
+
+  /* Tarjeta de vidrio */
+  .glass {
+    background: linear-gradient(180deg, rgba(17, 26, 46, 0.85), rgba(11, 18, 32, 0.85));
+    border: 1px solid rgba(152, 239, 220, 0.14);
+    backdrop-filter: blur(10px);
+  }
+
+  .glass-hover {
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .glass-hover:hover {
+    transform: translateY(-6px);
+    border-color: rgba(152, 239, 220, 0.55);
+    box-shadow: 0 20px 50px -20px rgba(152, 239, 220, 0.35);
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, #ffffff 0%, #98efdc 60%, #6fd6bf 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-mint;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-mint px-7 py-3 font-bold text-ink transition-all hover:bg-mint-dark hover:shadow-[0_0_30px_-4px_rgba(152,239,220,0.7)];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-mint/40 px-7 py-3 font-bold text-white transition-all hover:border-mint hover:bg-mint/10;
+  }
+
+  .field {
+    @apply mt-1 block w-full rounded-lg border border-mint/20 bg-ink-800 px-3 py-2.5 text-white placeholder-gray-500 focus:border-mint focus:outline-none focus:ring-1 focus:ring-mint;
+  }
+}
+
+.range {
+  --range-shdw: #070b15;
+}
+
+.checkbox:checked,
+.checkbox[checked="true"],
+.checkbox[aria-checked="true"] {
+  background-repeat: no-repeat;
+  animation: checkmark var(--animation-input, 0.2s) ease-out;
+  background-color: #070b15;
+  background-image: linear-gradient(-45deg, transparent 65%, #070b15 65.99%),
+    linear-gradient(45deg, transparent 75%, #070b15 75.99%),
+    linear-gradient(-45deg, #070b15 40%, transparent 40.99%),
+    linear-gradient(45deg, #070b15 30%, white 30.99%, white 40%, transparent 40.99%),
+    linear-gradient(-45deg, white 50%, #070b15 50.99%);
+}
