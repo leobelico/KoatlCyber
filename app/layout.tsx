@@ -17,7 +17,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 export const metadata: Metadata = {
   title: "KoatlCyber | SaaS con IA y seguridad, con soporte local en San Luis Potosí",
   description:
-    "KoatlCyber desarrolla y opera SaaS con inteligencia artificial y seguridad por diseño: Pórtico (CRM inmobiliario), Citalia (agenda y WhatsApp), MarcaGol (ligas de fútbol) y Global Media (noticias con IA). Además soporte, mantenimiento y redes en San Luis Potosí.",
+    "KoatlCyber desarrolla y opera SaaS con inteligencia artificial y seguridad por diseño: Pórtico (CRM inmobiliario), Citalia (agenda y WhatsApp), MarcaGol (ligas de fútbol) y Pluma (noticias con IA). Además soporte, mantenimiento y redes en San Luis Potosí.",
   icons: {
   icon: "/koatlcyber.ico", // 👈 aquí enlazas tu favicon
   },

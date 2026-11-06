@@ -83,8 +83,8 @@ export const saasProducts: SaasProduct[] = [
     ],
   },
   {
-    id: "globalmedia",
-    name: "Global Media",
+    id: "pluma",
+    name: "Pluma",
     tag: "04 / PORTAL DE NOTICIAS CON IA",
     title: "Un portal de noticias",
     highlight: "con redacción asistida",
