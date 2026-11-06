@@ -46,3 +46,4 @@ export { default as OrderItem } from "./OrderItem";
 export { default as AboutUs } from "./AboutUs";
 export { default as HowWeWork } from "./HowWeWork";
 export { default as ServicePlans } from "./ServicePlans";
+export { default as AiSecurity } from "./AiSecurity";

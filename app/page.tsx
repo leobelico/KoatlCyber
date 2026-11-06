@@ -1,9 +1,10 @@
-import { Hero, HowWeWork, IntroducingSection, ProductsSection, ServicePlans } from "@/components";
+import { AiSecurity, Hero, HowWeWork, IntroducingSection, ProductsSection, ServicePlans } from "@/components";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <AiSecurity />
       <HowWeWork />
       <IntroducingSection />
       <ServicePlans />

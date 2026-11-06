@@ -85,8 +85,8 @@ const HeroCarousel = () => {
 
               <dl className="mt-14 grid max-w-xl grid-cols-3 gap-6 border-t border-mint/15 pt-8">
                 {[
-                  ["4", "Productos SaaS"],
-                  ["MX", "Hecho en México"],
+                  ["IA", "En cada producto"],
+                  ["Seguro", "Por diseño"],
                   ["SLP", "Soporte local"],
                 ].map(([k, v]) => (
                   <div key={k}>

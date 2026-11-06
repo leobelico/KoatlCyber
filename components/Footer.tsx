@@ -32,7 +32,7 @@ const Footer = () => {
           <div>
             <Image src="/footer2.png" alt="KoatlCyber" width={220} height={100} />
             <p className="mt-5 max-w-sm text-sm leading-relaxed">
-              Software SaaS a la medida de tu negocio, con soporte, mantenimiento y redes de la mano de un equipo local en San Luis Potosí.
+              SaaS con inteligencia artificial y seguridad por diseño, con soporte, mantenimiento y redes de la mano de un equipo local en San Luis Potosí.
             </p>
           </div>
 

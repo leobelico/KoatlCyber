@@ -28,12 +28,14 @@ export const saasProducts: SaasProduct[] = [
     icon: FaBuilding,
     price: "Cotizar",
     features: [
+      "IA integrada: resumen del lead, temperatura y borrador de WhatsApp",
       "Leads desde formulario, CSV y webhook con campaña de origen",
       "Pipeline kanban con motivo de pérdida",
       "WhatsApp (Cloud API de Meta) y alertas de lead frío",
       "Desarrollos, inventario y cotizador con PDF",
       "Plan Élite: asistente de IA con resumen, temperatura y siguiente paso",
       "Roles, invitaciones y consentimiento LFPDPPP",
+      "Seguridad por diseño: datos aislados por cliente, roles y permisos",
     ],
   },
   {
@@ -48,12 +50,14 @@ export const saasProducts: SaasProduct[] = [
     icon: FaCalendarCheck,
     price: "Cotizar",
     features: [
+      "IA integrada: recordatorios y seguimiento inteligentes que reducen inasistencias",
       "Reservación en línea con enlace propio por negocio",
       "Recordatorios 24 h y 2 h por WhatsApp con botones",
       "Anti no-show: lista de espera y anticipo opcional",
       "Paquetes de sesiones y aviso a clientes que no regresan",
       "Notas clínicas cifradas con bitácora",
       "Reportes de ingresos, inasistencia y clientes recurrentes",
+      "Seguridad por diseño: datos aislados por cliente, roles y permisos",
     ],
   },
   {
@@ -68,12 +72,14 @@ export const saasProducts: SaasProduct[] = [
     icon: FaFutbol,
     price: "Cotizar",
     features: [
+      "IA integrada: armado de rol y calendario sin choques, automático",
       "Calendario automático ida o ida y vuelta, y liguilla",
       "Rol semanal sin choques de canchas ni horarios",
       "Resultados en vivo: goles, asistencias y tarjetas",
       "Tabla, goleo y suspensiones que se actualizan solos",
       "Árbitros y finanzas: inscripciones, pagos y gastos",
       "App para jugadores con notificaciones de goles",
+      "Seguridad por diseño: datos aislados por cliente, roles y permisos",
     ],
   },
   {
@@ -88,10 +94,11 @@ export const saasProducts: SaasProduct[] = [
     icon: FaNewspaper,
     price: "Cotizar",
     features: [
+      "IA integrada: busca, filtra y redacta notas citando la fuente",
       "Cobertura configurable por estado",
       "Filtrado de noticias irrelevantes o repetidas",
-      "Notas propias redactadas con IA citando la fuente",
       "Identidad visual a la medida del medio",
+      "Seguridad por diseño: datos aislados por cliente, roles y permisos",
     ],
   },
 ];
