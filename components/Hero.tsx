@@ -368,7 +368,7 @@ const HeroCarousel = () => {
     return (
       <div className="w-full animate-fadeIn px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-14 text-center">
-          <p className="eyebrow mb-3">// planes y precios</p>
+          <p className="eyebrow mb-3">{"// planes y precios"}</p>
           <h2 className="font-display text-4xl font-bold text-white sm:text-5xl">
             Planes de <span className="text-gradient">{serviceName}</span>
           </h2>

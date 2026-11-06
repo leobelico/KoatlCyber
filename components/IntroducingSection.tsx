@@ -59,7 +59,7 @@ const ServicesSection = () => {
 
       <div className="relative mx-auto max-w-screen-2xl">
         <div className="mb-14 text-center">
-          <p className="eyebrow mb-3">// qué hacemos</p>
+          <p className="eyebrow mb-3">{"// qué hacemos"}</p>
           <h2 className="font-display text-4xl font-bold text-white md:text-5xl">
             Soluciones tecnológicas <span className="text-gradient">integrales</span>
           </h2>

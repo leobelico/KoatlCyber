@@ -182,7 +182,7 @@ const UnifiedReviewsSection = () => {
 
       <div className="relative max-w-screen-2xl mx-auto pt-24 pb-24 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12 gap-4">
-          <p className="eyebrow">// proyectos y reseñas</p>
+          <p className="eyebrow">{"// proyectos y reseñas"}</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
             Nuestro trabajo <span className="text-gradient">en acción</span>
           </h2>

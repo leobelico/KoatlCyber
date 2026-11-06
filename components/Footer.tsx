@@ -37,7 +37,7 @@ const Footer = () => {
 
           {/* Enlaces */}
           <div>
-            <h3 className="eyebrow mb-5">// enlaces</h3>
+            <h3 className="eyebrow mb-5">{"// enlaces"}</h3>
             <ul className="space-y-3 text-sm">
               {links.map((l) => (
                 <li key={l.href}>
@@ -51,7 +51,7 @@ const Footer = () => {
 
           {/* Contacto */}
           <div>
-            <h3 className="eyebrow mb-5">// contacto</h3>
+            <h3 className="eyebrow mb-5">{"// contacto"}</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-3">
                 <FaWhatsapp className="text-lg text-mint" />
@@ -73,7 +73,7 @@ const Footer = () => {
 
         {/* Equipo */}
         <div className="mt-16 border-t border-mint/10 pt-12">
-          <h3 className="eyebrow mb-8 text-center">// nuestro equipo</h3>
+          <h3 className="eyebrow mb-8 text-center">{"// nuestro equipo"}</h3>
           <div className="flex flex-wrap justify-center gap-8">
             {team.map((member) => (
               <div key={member.name} className="flex w-32 flex-col items-center text-center">
