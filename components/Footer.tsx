@@ -13,8 +13,9 @@ const team = [
 ];
 
 const links = [
+  { label: "Productos SaaS", href: "/#inicio" },
   { label: "Servicios", href: "/#servicios" },
-  { label: "Planes", href: "/#inicio" },
+  { label: "Planes", href: "/#planes" },
   { label: "Proyectos", href: "/#proyectos" },
   { label: "Términos y condiciones", href: "/terminos-y-condiciones" },
   { label: "Política de privacidad", href: "/politica-de-privacidad" },
@@ -31,7 +32,7 @@ const Footer = () => {
           <div>
             <Image src="/footer2.png" alt="KoatlCyber" width={220} height={100} />
             <p className="mt-5 max-w-sm text-sm leading-relaxed">
-              Desarrollo web, soporte técnico, mantenimiento, redes y cámaras de seguridad para hogares y empresas en San Luis Potosí.
+              Software SaaS a la medida de tu negocio, con soporte, mantenimiento y redes de la mano de un equipo local en San Luis Potosí.
             </p>
           </div>
 

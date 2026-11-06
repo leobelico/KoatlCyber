@@ -15,9 +15,9 @@ const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" }
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "KoatlCyber | Desarrollo web, soporte, redes y seguridad en San Luis Potosí",
+  title: "KoatlCyber | SaaS para tu negocio, con soporte local en San Luis Potosí",
   description:
-    "KoatlCyber: páginas web, soporte técnico, mantenimiento de sistemas, redes y cámaras de seguridad para hogares y empresas en San Luis Potosí.",
+    "KoatlCyber desarrolla y opera SaaS: Pórtico (CRM inmobiliario), Citalia (agenda y WhatsApp), MarcaGol (ligas de fútbol) y Global Media (noticias con IA). Además soporte, mantenimiento y redes en San Luis Potosí.",
   icons: {
   icon: "/koatlcyber.ico", // 👈 aquí enlazas tu favicon
   },

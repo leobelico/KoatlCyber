@@ -13,15 +13,6 @@ type Service = { title: string; description: string; icon: IconType };
 
 const serviceCategories: { name: string; services: Service[] }[] = [
   {
-    name: "Desarrollo Web",
-    services: [
-      { title: "Desarrollo Web a Medida", description: "Páginas ultrarrápidas y optimizadas para conversiones", icon: FaCode },
-      { title: "Diseño Impactante", description: "Interfaces que capturan la esencia de tu marca", icon: FaPalette },
-      { title: "E-commerce", description: "Tiendas online con pasarelas de pago integradas", icon: FaCartShopping },
-      { title: "SEO Avanzado", description: "Posicionamos tu web en los primeros lugares", icon: FaMagnifyingGlassChart },
-    ],
-  },
-  {
     name: "Soporte Técnico",
     services: [
       { title: "Soporte 24/7", description: "Asistencia técnica permanente para emergencias", icon: FaHeadset },
@@ -48,6 +39,15 @@ const serviceCategories: { name: string; services: Service[] }[] = [
       { title: "Optimización", description: "Mejora continua del rendimiento", icon: FaRocket },
     ],
   },
+  {
+    name: "Desarrollo Web",
+    services: [
+      { title: "Desarrollo Web a Medida", description: "Páginas ultrarrápidas y optimizadas para conversiones", icon: FaCode },
+      { title: "Diseño Impactante", description: "Interfaces que capturan la esencia de tu marca", icon: FaPalette },
+      { title: "E-commerce", description: "Tiendas online con pasarelas de pago integradas", icon: FaCartShopping },
+      { title: "SEO Avanzado", description: "Posicionamos tu web en los primeros lugares", icon: FaMagnifyingGlassChart },
+    ],
+  },
 ];
 
 const ServicesSection = () => {
@@ -61,10 +61,10 @@ const ServicesSection = () => {
         <div className="mb-14 text-center">
           <p className="eyebrow mb-3">{"// qué hacemos"}</p>
           <h2 className="font-display text-4xl font-bold text-white md:text-5xl">
-            Soluciones tecnológicas <span className="text-gradient">integrales</span>
+            Servicios que <span className="text-gradient">respaldan tu operación</span>
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-400">
-            Desde desarrollo web hasta instalaciones físicas, cubrimos todas tus necesidades tecnológicas.
+            Soporte, mantenimiento, redes y seguridad, y desarrollo web: la base tecnológica para que tu negocio y tus SaaS no se detengan.
           </p>
         </div>
 
@@ -104,8 +104,8 @@ const ServicesSection = () => {
         </div>
 
         <div className="mt-14 text-center">
-          <a href="#inicio" className="btn-primary">
-            Cotizar un servicio <FaArrowRight />
+          <a href="#planes" className="btn-primary">
+            Ver planes de servicio <FaArrowRight />
           </a>
         </div>
       </div>

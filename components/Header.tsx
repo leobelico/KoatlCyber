@@ -9,8 +9,9 @@ import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
 const navLinks = [
-  { label: "Servicios", href: "/#servicios" },
-  { label: "Planes", href: "/#inicio" },
+  { label: "Productos", href: "/#inicio" },
+  { label: "Servicio", href: "/#servicio" },
+  { label: "Planes", href: "/#planes" },
   { label: "Proyectos", href: "/#proyectos" },
   { label: "Contacto", href: "/#contacto" },
 ];

@@ -44,3 +44,5 @@ export { default as DashboardProductTable } from "./DashboardProductTable";
 export { default as AdminOrders } from "./AdminOrders";
 export { default as OrderItem } from "./OrderItem";
 export { default as AboutUs } from "./AboutUs";
+export { default as HowWeWork } from "./HowWeWork";
+export { default as ServicePlans } from "./ServicePlans";
