@@ -1,0 +1,57 @@
+/* ==========================================================
+   03 · GRECA — mexicano contemporáneo
+   Fuentes (Google Fonts, OFL): Bricolage Grotesque (títulos) + Public Sans (texto)
+   Modo nativo: OSCURO (es la identidad de esta dirección: no cambia solo con el sistema).
+   Claro disponible con <html data-theme="light">.
+   ========================================================== */
+:root {
+  /* Color — oscuro cálido (nativo) */
+  --bg: #1a110d;            /* cacao oscuro: oscuro sin ser el azul del logo, para que el menta vibre distinto */
+  --surface: #251914;
+  --surface-2: #30211a;
+  --text: #f6ebdd;          /* hueso de amate */
+  --text-muted: #c9b8a6;    /* 9:1 sobre --bg */
+  --accent: #98efdc;        /* menta del logo: el "jade" de la paleta */
+  --accent-strong: #98efdc;
+  --on-accent: #1a110d;
+  --gold: #f2a93b;          /* cempasúchil: calidez y celebración */
+  --gold-text: #f2a93b;
+  --on-gold: #1a110d;
+  --chile: #ee6a4c;         /* chile/cochinilla: alerta con identidad */
+  --line: rgba(246, 235, 221, 0.16);
+  --line-strong: rgba(246, 235, 221, 0.42);
+  --focus: #ffffff;
+
+  /* Tipografía */
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-text: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-0: clamp(1rem, 0.96rem + 0.22vw, 1.0875rem);
+  --fs-1: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --fs-2: clamp(1.8rem, 1.3rem + 2.2vw, 3rem);
+  --fs-3: clamp(2.4rem, 1.4rem + 4.6vw, 5rem);
+  --fs-label: 0.78rem;
+  --tracking-label: 0.16em;
+
+  /* Espaciado / forma */
+  --s-1: 0.5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.75rem; --s-5: 4.5rem; --s-6: 6.5rem;
+  --radius-sm: 0;            /* ángulos rectos: la geometría escalonada manda */
+  --step: 14px;              /* tamaño del "escalón" en esquinas cortadas */
+  --shadow-card: 0 18px 40px -26px rgba(0, 0, 0, 0.7);
+
+  /* Movimiento */
+  --ease: cubic-bezier(0.3, 0.7, 0.2, 1);
+  --t-fast: 160ms;
+  --t-slow: 700ms;
+}
+
+:root[data-theme="light"] {
+  --bg: #fbf3e6; --surface: #fff8ec; --surface-2: #f2e4cc;
+  --text: #2a1a12; --text-muted: #5e4a3c;
+  --accent: #98efdc; --accent-strong: #0a6556; --on-accent: #2a1a12;
+  --gold: #f2a93b; --gold-text: #8a4a00; --on-gold: #2a1a12; --chile: #d8512f;
+  --line: rgba(42, 26, 18, 0.16); --line-strong: rgba(42, 26, 18, 0.5);
+  --focus: #2a1a12; --shadow-card: 0 16px 34px -24px rgba(42, 26, 18, 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-slow: 0ms; }
+}

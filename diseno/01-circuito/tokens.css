@@ -1,0 +1,52 @@
+/* ==========================================================
+   01 · CIRCUITO — evolución directa del logo
+   Fuentes (Google Fonts, OFL): Manrope (texto/títulos) + IBM Plex Mono (etiquetas)
+   Modo nativo: OSCURO (es la identidad de esta dirección: no cambia solo con el sistema).
+   Claro disponible con <html data-theme="light">.
+   ========================================================== */
+:root {
+  /* Color — oscuro (nativo) */
+  --bg: #070b16;            /* azul noche del logo: continuidad total */
+  --surface: #0d1424;       /* un paso arriba del fondo, para paneles */
+  --surface-2: #131c33;
+  --text: #e7eef6;          /* blanco azulado, no puro: menos fatiga */
+  --text-muted: #9aa8bc;    /* 8:1 sobre --bg */
+  --accent: #98efdc;        /* menta exacto del logo */
+  --accent-strong: #98efdc; /* texto de acento (en claro se oscurece) */
+  --on-accent: #070b16;     /* texto sobre botón menta */
+  --line: rgba(152, 239, 220, 0.22);       /* líneas finas: solo decoración */
+  --line-strong: rgba(152, 239, 220, 0.55);
+  --focus: #ffffff;
+
+  /* Tipografía */
+  --font-display: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+  --fs-0: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --fs-1: clamp(1.125rem, 1.05rem + 0.4vw, 1.3rem);
+  --fs-2: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+  --fs-3: clamp(2.1rem, 1.4rem + 3.4vw, 4rem);
+  --fs-label: 0.75rem;
+  --tracking-label: 0.22em;  /* eco del "C Y B E R" espaciado del logo */
+
+  /* Espaciado / forma */
+  --s-1: 0.5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.5rem; --s-5: 4rem; --s-6: 6.5rem;
+  --radius-sm: 2px;          /* esquinas casi rectas: precisión técnica */
+  --radius-md: 6px;
+  --shadow-glow: 0 0 32px -8px rgba(152, 239, 220, 0.45);
+
+  /* Movimiento */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 160ms;
+  --t-slow: 900ms;
+}
+
+:root[data-theme="light"] {
+  --bg: #f4f8f7; --surface: #ffffff; --surface-2: #e9f1ef;
+  --text: #0b1220; --text-muted: #475569;
+  --accent: #98efdc; --accent-strong: #0b6b5c; --on-accent: #070b16;
+  --line: rgba(11, 107, 92, 0.22); --line-strong: rgba(11, 107, 92, 0.6);
+  --focus: #0b1220; --shadow-glow: 0 10px 30px -14px rgba(11, 107, 92, 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-slow: 0ms; }
+}

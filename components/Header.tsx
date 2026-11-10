@@ -9,8 +9,9 @@ import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
 const navLinks = [
-  { label: "Productos", href: "/#inicio" },
-  { label: "Servicio", href: "/#servicio" },
+  { label: "Productos", href: "/#productos" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Seguridad", href: "/#seguridad" },
   { label: "Planes", href: "/#planes" },
   { label: "Proyectos", href: "/#proyectos" },
   { label: "Contacto", href: "/#contacto" },
@@ -27,25 +28,25 @@ const Header = () => {
   const isAdmin = pathname.startsWith("/admin");
 
   return (
-    <header className="sticky top-0 z-50 bg-ink-900/85 backdrop-blur-md">
+    <header className="z-50 bg-ink/95 backdrop-blur-md lg:sticky lg:top-0">
       <HeaderTop />
       {!isAdmin ? (
-        <div className="border-b border-mint/10">
-          <div className="mx-auto flex max-w-screen-2xl items-center justify-between px-6 py-3 lg:px-12 max-md:flex-col max-md:gap-y-3">
+        <div className="border-b border-bone/10">
+          <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-x-4 px-6 py-2 lg:px-12 max-lg:flex-col max-lg:gap-y-1">
             <Link href="/" className="shrink-0">
               <Image
                 src="/koatlcyber.jpg"
                 alt="KoatlCyber logo"
                 width={300}
                 height={150}
-                className="max-h-[64px] w-auto object-contain"
+                className="max-h-[56px] w-auto object-contain"
                 priority
               />
             </Link>
 
-            <nav className="flex items-center gap-x-8 font-mono text-sm uppercase tracking-wider text-gray-300 max-sm:gap-x-4 max-sm:text-xs">
+            <nav className="flex flex-wrap items-center justify-center text-sm font-bold text-bone">
               {navLinks.map((l) => (
-                <Link key={l.href} href={l.href} className="transition-colors hover:text-mint">
+                <Link key={l.href} href={l.href} className="inline-flex min-h-[44px] items-center px-3 transition-colors hover:text-mint max-sm:px-2 max-sm:text-xs">
                   {l.label}
                 </Link>
               ))}
@@ -55,10 +56,10 @@ const Header = () => {
               href="https://wa.me/524443479221"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary !px-5 !py-2 text-sm max-md:hidden"
+              className="btn-primary !min-h-[44px] !px-5 text-sm max-lg:hidden"
             >
               <FaWhatsapp className="text-lg" />
-              WhatsApp
+              Hablemos
             </a>
           </div>
         </div>

@@ -1,116 +1,81 @@
-'use client';
-
-import React, { useState } from "react";
+import React from "react";
 import type { IconType } from "react-icons";
-import {
-  FaArrowRight, FaCode, FaPalette, FaCartShopping, FaMagnifyingGlassChart,
-  FaHeadset, FaScrewdriverWrench, FaGears, FaPhoneVolume,
-  FaNetworkWired, FaVideo, FaWifi, FaPhone,
-  FaArrowsRotate, FaDatabase, FaEye, FaRocket,
-} from "react-icons/fa6";
+import { FaShieldHalved, FaCode, FaLayerGroup, FaArrowRight } from "react-icons/fa6";
 
-type Service = { title: string; description: string; icon: IconType };
-
-const serviceCategories: { name: string; services: Service[] }[] = [
+const services: { title: string; icon: IconType; color: string; text: string; items: string[] }[] = [
   {
-    name: "Soporte Técnico",
-    services: [
-      { title: "Soporte 24/7", description: "Asistencia técnica permanente para emergencias", icon: FaHeadset },
-      { title: "Resolución de Errores", description: "Diagnóstico y solución de problemas técnicos", icon: FaScrewdriverWrench },
-      { title: "Configuraciones", description: "Optimización de sistemas y aplicaciones", icon: FaGears },
-      { title: "Asesoría Remota", description: "Guía experta paso a paso cuando lo necesites", icon: FaPhoneVolume },
+    title: "Ciberseguridad",
+    icon: FaShieldHalved,
+    color: "text-gold",
+    text: "Encontramos y cerramos las brechas de tu negocio antes de que alguien las aproveche.",
+    items: [
+      "Pruebas de seguridad",
+      "Hardening de servidores y equipos",
+      "Redes seguras, WiFi y cámaras",
+      "Soporte, mantenimiento y monitoreo",
     ],
   },
   {
-    name: "Redes y Seguridad",
-    services: [
-      { title: "Cableado Estructurado", description: "Instalación profesional de redes cableadas para oficinas y hogares", icon: FaNetworkWired },
-      { title: "Cámaras de Seguridad", description: "Sistemas de videovigilancia con monitoreo remoto", icon: FaVideo },
-      { title: "Redes WiFi", description: "Optimización de cobertura inalámbrica en todos tus espacios", icon: FaWifi },
-      { title: "Centrales Telefónicas", description: "Instalación de sistemas de comunicación empresarial", icon: FaPhone },
+    title: "Desarrollo a la medida",
+    icon: FaCode,
+    color: "text-mint",
+    text: "Sistemas hechos para tu forma de trabajar, con seguridad desde el diseño.",
+    items: [
+      "Sistemas web y aplicaciones",
+      "Integraciones y automatización",
+      "Páginas web y tiendas en línea",
+      "Mantenimiento continuo",
     ],
   },
   {
-    name: "Mantenimiento",
-    services: [
-      { title: "Actualizaciones", description: "Mantenemos tus sistemas al día y seguros", icon: FaArrowsRotate },
-      { title: "Copias de Seguridad", description: "Protección de datos con backups periódicos", icon: FaDatabase },
-      { title: "Monitoreo", description: "Vigilancia constante de tus sistemas", icon: FaEye },
-      { title: "Optimización", description: "Mejora continua del rendimiento", icon: FaRocket },
-    ],
-  },
-  {
-    name: "Desarrollo Web",
-    services: [
-      { title: "Desarrollo Web a Medida", description: "Páginas ultrarrápidas y optimizadas para conversiones", icon: FaCode },
-      { title: "Diseño Impactante", description: "Interfaces que capturan la esencia de tu marca", icon: FaPalette },
-      { title: "E-commerce", description: "Tiendas online con pasarelas de pago integradas", icon: FaCartShopping },
-      { title: "SEO Avanzado", description: "Posicionamos tu web en los primeros lugares", icon: FaMagnifyingGlassChart },
-    ],
+    title: "Productos SaaS",
+    icon: FaLayerGroup,
+    color: "text-chile",
+    text: "Software propio, listo para usar, con soporte de un equipo local.",
+    items: ["Software listo para usar", "IA integrada donde ayuda", "Implementación y capacitación", "Suscripción mensual"],
   },
 ];
 
-const ServicesSection = () => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  return (
-    <section id="servicios" className="relative overflow-hidden bg-ink-900 px-4 py-24">
-      <div className="pointer-events-none absolute inset-0 bg-cyber-grid opacity-60 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]" />
-
-      <div className="relative mx-auto max-w-screen-2xl">
-        <div className="mb-14 text-center">
-          <p className="eyebrow mb-3">{"// qué hacemos"}</p>
-          <h2 className="font-display text-4xl font-bold text-white md:text-5xl">
-            Servicios que <span className="text-gradient">respaldan tu operación</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-400">
-            Soporte, mantenimiento, redes y seguridad, y desarrollo web: la base tecnológica para que tu negocio y tus SaaS no se detengan.
-          </p>
-        </div>
-
-        {/* Pestañas */}
-        <div className="mb-12 flex justify-center">
-          <div className="glass inline-flex max-w-full overflow-x-auto rounded-xl p-1.5">
-            {serviceCategories.map((category, index) => (
-              <button
-                key={category.name}
-                onClick={() => setActiveTab(index)}
-                className={`whitespace-nowrap rounded-lg px-5 py-2.5 font-mono text-sm uppercase tracking-wider transition-all ${
-                  activeTab === index
-                    ? "bg-mint text-ink shadow-[0_0_24px_-4px_rgba(152,239,220,0.7)]"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Tarjetas */}
-        <div key={activeTab} className="grid animate-fadeIn grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {serviceCategories[activeTab].services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <div key={service.title} className="glass glass-hover group rounded-2xl p-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-mint/30 bg-mint/10 text-2xl text-mint transition-all group-hover:bg-mint group-hover:text-ink">
-                  <Icon />
-                </div>
-                <h3 className="mb-2 font-display text-xl font-bold text-white">{service.title}</h3>
-                <p className="text-gray-400">{service.description}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-14 text-center">
-          <a href="#planes" className="btn-primary">
-            Ver planes de servicio <FaArrowRight />
-          </a>
-        </div>
+const ServicesSection = () => (
+  <section id="servicios" className="bg-ink py-20">
+    <div className="mx-auto max-w-screen-xl px-6 lg:px-8">
+      <div className="mb-12 max-w-3xl">
+        <p className="eyebrow">Servicios</p>
+        <h2 className="mt-3 font-display text-4xl font-extrabold leading-[1.05] text-bone md:text-5xl">
+          Tres formas de cuidar y hacer crecer tu operación.
+        </h2>
+        <p className="mt-4 text-lg text-bone-300">
+          Hablamos claro: sin tecnicismos innecesarios y con reportes que se entienden.
+        </p>
       </div>
-    </section>
-  );
-};
+
+      <div className="grid gap-6 md:grid-cols-3">
+        {services.map((s) => {
+          const Icon = s.icon;
+          return (
+            <article key={s.title} className="step grid content-start gap-4 bg-ink-800 p-7">
+              <Icon className={`text-4xl ${s.color}`} aria-hidden="true" />
+              <h3 className="font-display text-2xl font-extrabold text-bone">{s.title}</h3>
+              <p className="text-bone-300">{s.text}</p>
+              <ul className="grid gap-2 text-bone-200">
+                {s.items.map((it) => (
+                  <li key={it} className="relative pl-5 before:absolute before:left-0 before:top-[0.6em] before:h-2 before:w-2 before:bg-gold">
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="mt-12">
+        <a href="#planes" className="btn-ghost">
+          Ver planes de servicio <FaArrowRight />
+        </a>
+      </div>
+    </div>
+  </section>
+);
 
 export default ServicesSection;

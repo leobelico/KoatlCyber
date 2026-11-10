@@ -1,14 +1,25 @@
-import { AiSecurity, Hero, HowWeWork, IntroducingSection, ProductsSection, ServicePlans } from "@/components";
+import {
+  AiSecurity,
+  ContactSection,
+  Hero,
+  HowWeWork,
+  IntroducingSection,
+  ProductsSection,
+  SaasProducts,
+  ServicePlans,
+} from "@/components";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <SaasProducts />
+      <IntroducingSection />
       <AiSecurity />
       <HowWeWork />
-      <IntroducingSection />
       <ServicePlans />
       <ProductsSection />
+      <ContactSection />
     </>
   );
 }

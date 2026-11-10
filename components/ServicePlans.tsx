@@ -263,27 +263,26 @@ const ServicePlans = () => {
   const group = groups[tab];
 
   return (
-    <section id="planes" className="relative overflow-hidden bg-ink px-4 py-24">
-      <div className="pointer-events-none absolute inset-0 bg-cyber-glow" />
+    <section id="planes" className="relative overflow-hidden bg-ink-800 px-4 py-20">
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-12 text-center">
-          <p className="eyebrow mb-3">{"// servicios profesionales"}</p>
-          <h2 className="font-display text-4xl font-bold text-white md:text-5xl">
-            Planes de <span className="text-gradient">servicio</span>
+          <p className="eyebrow mb-3">Servicios profesionales</p>
+          <h2 className="font-display text-4xl font-extrabold text-bone md:text-5xl">
+            Planes de <span className="text-mint">servicio</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-bone-300">
             Además de nuestros SaaS, te acompañamos con soporte, mantenimiento, infraestructura y desarrollo web.
           </p>
         </div>
 
         <div className="mb-12 flex justify-center">
-          <div className="glass inline-flex max-w-full overflow-x-auto rounded-xl p-1.5">
+          <div className="inline-flex max-w-full overflow-x-auto bg-ink-700 p-1.5">
             {groups.map((g, i) => (
               <button
                 key={g.key}
                 onClick={() => setTab(i)}
-                className={`whitespace-nowrap rounded-lg px-5 py-2.5 font-mono text-sm uppercase tracking-wider transition-all ${
-                  tab === i ? "bg-mint text-ink shadow-[0_0_24px_-4px_rgba(152,239,220,0.7)]" : "text-gray-400 hover:text-white"
+                className={`min-h-[44px] whitespace-nowrap px-5 text-sm font-bold uppercase tracking-wider transition-colors ${
+                  tab === i ? "bg-gold text-ink" : "text-bone-300 hover:text-bone"
                 }`}
               >
                 {g.label}
@@ -296,22 +295,22 @@ const ServicePlans = () => {
           {group.plans.map((plan) => (
             <div
               key={plan.name}
-              className={`glass glass-hover relative flex flex-col rounded-2xl p-8 ${
-                plan.popular ? "!border-mint shadow-[0_0_60px_-20px_rgba(152,239,220,0.55)] md:-translate-y-3" : ""
+              className={`glass glass-hover relative flex flex-col p-8 ${
+                plan.popular ? "!border-gold md:-translate-y-3" : ""
               }`}
             >
               {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-mint px-4 py-1 font-mono text-xs font-bold uppercase tracking-wider text-ink">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-gold px-4 py-1 text-xs font-bold uppercase tracking-wider text-ink">
                   Recomendado
                 </span>
               )}
-              <h3 className="font-display text-2xl font-bold text-white">{plan.name}</h3>
+              <h3 className="font-display text-2xl font-extrabold text-bone">{plan.name}</h3>
               <p className="mt-1 text-sm text-mint">{plan.ctaText}</p>
-              <p className="my-6 font-display text-5xl font-bold text-white">{plan.price}</p>
+              <p className="my-6 font-display text-5xl font-extrabold text-bone">{plan.price}</p>
               <ul className="mb-8 flex-grow space-y-3">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-gray-300">
-                    <FaCheck className="mt-1 shrink-0 text-mint" />
+                  <li key={f} className="flex items-start gap-3 text-bone-200">
+                    <FaCheck className="mt-1 shrink-0 text-gold" />
                     <span>{f}</span>
                   </li>
                 ))}

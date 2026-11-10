@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KoatlCyber · Direcciones de estilo</title>
+<style>
+:root{--bg:#111318;--card:#1a1d24;--text:#eef1f6;--muted:#a3adbd;--line:#2c313c;--mint:#98efdc;--focus:#fff}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--mint)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.wrap{width:min(1280px,100% - 2rem);margin-inline:auto}
+header{padding:3rem 0 1.5rem}
+h1{margin:.2rem 0 .6rem;font-size:clamp(1.8rem,1.2rem + 3vw,3rem);line-height:1.1}
+p{margin:0}
+.muted{color:var(--muted)}
+.eyebrow{font:600 .78rem/1 ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--mint)}
+.logo{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;padding:1rem;background:var(--card);border:1px solid var(--line);border-radius:12px;max-width:42rem}
+.logo img{width:72px;height:auto;border-radius:6px}
+.grid{display:grid;gap:1.25rem;padding-bottom:3rem}
+@media(min-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1180px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.shot{position:relative;aspect-ratio:16/11;overflow:hidden;background:#000;border-bottom:1px solid var(--line)}
+.shot iframe{position:absolute;top:0;left:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none;background:#fff}
+.shot a.cover{position:absolute;inset:0;z-index:2}
+.body{padding:1.25rem;display:grid;gap:.7rem;flex:1;align-content:start}
+.body h2{margin:0;font-size:1.35rem}
+.num{color:var(--mint);font:600 .8rem ui-monospace,monospace;letter-spacing:.15em}
+.sw{display:flex;gap:6px;flex-wrap:wrap}
+.sw i{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,.18);display:block}
+.meta{font-size:.88rem;color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto;padding-top:.5rem}
+.links a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:.92rem}
+.links a:first-child{background:var(--mint);color:#07201c;border-color:var(--mint)}
+.links a:hover{border-color:var(--mint)}
+section.table{padding:0 0 4rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.92rem}
+th,td{padding:.8rem 1rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;background:var(--card)}
+tr:last-child td{border-bottom:0}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">KoatlCyber · propuesta de diseño</p>
+    <h1>Cinco direcciones de estilo</h1>
+    <p class="muted" style="max-width:46rem">Cada una es una maqueta estática y navegable de la página de inicio, con sus propios tokens (modo oscuro y claro). Abre la que te llame la atención, compara y dime cuál elegir o cuáles mezclar. El logo no se modificó en ninguna: se usa el archivo original.</p>
+    <div class="logo"><img src="../public/koatlcyber.jpg" width="72" height="70" alt="Logo actual de KoatlCyber"><p class="muted">Logo actual, sin cambios. Es un JPG de 315 px con fondo azul noche; para web retina e impresión conviene tener el original vectorial.</p></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <article class="card">
+      <div class="shot"><iframe src="01-circuito/pagina.html" title="Vista previa 01 Circuito" loading="lazy" tabindex="-1"></iframe><a class="cover" href="01-circuito/pagina.html" aria-label="Abrir 01 Circuito"></a></div>
+      <div class="body"><span class="num">01</span><h2>Circuito</h2><p>Evolución directa del logo: oscuro, línea fina y mucho aire.</p>
+        <div class="sw" aria-label="Paleta"><i style="background:#070b16"></i><i style="background:#0d1424"></i><i style="background:#98efdc"></i><i style="background:#e7eef6"></i></div>
+        <p class="meta">Manrope + IBM Plex Mono · nativo oscuro</p>
+        <div class="links"><a href="01-circuito/pagina.html">Abrir página</a><a href="01-circuito/LEEME.md">LEEME</a></div></div>
+    </article>
+    <article class="card">
+      <div class="shot"><iframe src="02-despacho/pagina.html" title="Vista previa 02 Despacho" loading="lazy" tabindex="-1"></iframe><a class="cover" href="02-despacho/pagina.html" aria-label="Abrir 02 Despacho"></a></div>
+      <div class="body"><span class="num">02</span><h2>Despacho</h2><p>Claro y editorial: sensación de despacho serio, menta como resaltador.</p>
+        <div class="sw"><i style="background:#f5f1e8"></i><i style="background:#101826"></i><i style="background:#98efdc"></i><i style="background:#0a6556"></i></div>
+        <p class="meta">Fraunces + Source Sans 3 · nativo claro</p>
+        <div class="links"><a href="02-despacho/pagina.html">Abrir página</a><a href="02-despacho/LEEME.md">LEEME</a></div></div>
+    </article>
+    <article class="card">
+      <div class="shot"><iframe src="03-greca/pagina.html" title="Vista previa 03 Greca" loading="lazy" tabindex="-1"></iframe><a class="cover" href="03-greca/pagina.html" aria-label="Abrir 03 Greca"></a></div>
+      <div class="body"><span class="num">03</span><h2>Greca</h2><p>Mexicano contemporáneo: geometría escalonada, cacao, cempasúchil y menta.</p>
+        <div class="sw"><i style="background:#1a110d"></i><i style="background:#f2a93b"></i><i style="background:#ee6a4c"></i><i style="background:#98efdc"></i></div>
+        <p class="meta">Bricolage Grotesque + Public Sans · nativo oscuro cálido</p>
+        <div class="links"><a href="03-greca/pagina.html">Abrir página</a><a href="03-greca/LEEME.md">LEEME</a></div></div>
+    </article>
+    <article class="card">
+      <div class="shot"><iframe src="04-interfaz/pagina.html" title="Vista previa 04 Interfaz" loading="lazy" tabindex="-1"></iframe><a class="cover" href="04-interfaz/pagina.html" aria-label="Abrir 04 Interfaz"></a></div>
+      <div class="body"><span class="num">04</span><h2>Interfaz</h2><p>Producto SaaS moderno: bento, maquetas de app y un bloque de alto contraste.</p>
+        <div class="sw"><i style="background:#f4f6f8"></i><i style="background:#ffffff"></i><i style="background:#98efdc"></i><i style="background:#0b1020"></i></div>
+        <p class="meta">Plus Jakarta Sans + DM Mono · nativo claro</p>
+        <div class="links"><a href="04-interfaz/pagina.html">Abrir página</a><a href="04-interfaz/LEEME.md">LEEME</a></div></div>
+    </article>
+    <article class="card">
+      <div class="shot"><iframe src="05-cartel/pagina.html" title="Vista previa 05 Cartel" loading="lazy" tabindex="-1"></iframe><a class="cover" href="05-cartel/pagina.html" aria-label="Abrir 05 Cartel"></a></div>
+      <div class="body"><span class="num">05</span><h2>Cartel</h2><p>La atrevida: tipografía enorme, bloques planos y sombras duras.</p>
+        <div class="sw"><i style="background:#f4f1e8"></i><i style="background:#070b16"></i><i style="background:#98efdc"></i><i style="background:#ff5b2e"></i></div>
+        <p class="meta">Big Shoulders Display + Work Sans · nativo claro</p>
+        <div class="links"><a href="05-cartel/pagina.html">Abrir página</a><a href="05-cartel/LEEME.md">LEEME</a></div></div>
+    </article>
+  </div>
+
+  <section class="table" aria-labelledby="cmp">
+    <h2 id="cmp" style="margin:0 0 1rem">Comparativa rápida</h2>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th>01 Circuito</th><th>02 Despacho</th><th>03 Greca</th><th>04 Interfaz</th><th>05 Cartel</th></tr></thead>
+      <tbody>
+        <tr><th>Transmite</th><td>Rigor técnico</td><td>Confianza profesional</td><td>Orgullo local con personalidad</td><td>Producto fácil y moderno</td><td>Franqueza y memorabilidad</td></tr>
+        <tr><th>Mejor para</th><td>Equipos de TI, continuidad de marca</td><td>Dueños no técnicos, propuestas</td><td>Diferenciarse como marca local</td><td>Vender demos de SaaS</td><td>Redes, eventos, destacar</td></tr>
+        <tr><th>Riesgo</th><td>Genérica "neón"</td><td>Poco "tech"</td><td>Caer en folclor</td><td>Parecida a otros SaaS</td><td>Informal para TI conservadora</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</main>
+
+<footer><div class="wrap">Maquetas estáticas: HTML y CSS, sin build. Las tipografías se cargan de Google Fonts (necesitan internet la primera vez).</div></footer>
+
+<script>
+/* Escala cada vista previa al ancho de su tarjeta (solo estética; sin JS se ven recortadas). */
+(function(){
+  var shots=document.querySelectorAll('.shot');
+  function fit(){shots.forEach(function(s){var f=s.querySelector('iframe');f.style.transform='scale('+(s.clientWidth/1280)+')';});}
+  fit();
+  if(window.ResizeObserver){var ro=new ResizeObserver(fit);shots.forEach(function(s){ro.observe(s);});}else{window.addEventListener('resize',fit);}
+})();
+</script>
+</body>
+</html>

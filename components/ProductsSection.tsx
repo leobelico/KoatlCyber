@@ -172,23 +172,22 @@ const UnifiedReviewsSection = () => {
   if (isLoading) return (
     <div className="text-center py-16 bg-ink">
       <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-mint"></div>
-      <p className="mt-2 font-mono text-sm text-gray-400">Cargando proyectos...</p>
+      <p className="mt-2 text-sm text-bone-300">Cargando proyectos...</p>
     </div>
   )
 
   return (
     <section id="proyectos" className="bg-ink relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-cyber-glow" />
 
       <div className="relative max-w-screen-2xl mx-auto pt-24 pb-24 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12 gap-4">
-          <p className="eyebrow">{"// proyectos y reseñas"}</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
-            Nuestro trabajo <span className="text-gradient">en acción</span>
+          <p className="eyebrow">Proyectos y reseñas</p>
+          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-bone">
+            Nuestro trabajo <span className="text-mint">en acción</span>
           </h2>
           <button
             onClick={() => setShowForm(true)}
-            className="btn-ghost mt-2 !py-2"
+            className="btn-ghost mt-2"
           >
             + Añadir reseña
           </button>
@@ -203,10 +202,10 @@ const UnifiedReviewsSection = () => {
                 setActiveTab(tab as any)
                 setVisibleItems(4)
               }}
-              className={`px-6 py-2 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300 ${
+              className={`min-h-[44px] px-6 text-sm font-bold uppercase tracking-wider transition-colors ${
                 activeTab === tab
-                  ? 'bg-mint text-ink shadow-[0_0_24px_-4px_rgba(152,239,220,0.7)]'
-                  : 'glass text-gray-300 hover:text-white'
+                  ? 'bg-gold text-ink'
+                  : 'bg-ink-700 text-bone-300 hover:text-bone'
               }`}
             >
               {tab === 'todos' ? 'Todos' :
@@ -414,10 +413,10 @@ const UnifiedReviewsSection = () => {
         {/* Grid de Reseñas */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {reviewsToShow.map((item) => (
-            <div key={item.id} className="glass glass-hover text-gray-200 rounded-2xl p-6">
+            <div key={item.id} className="glass glass-hover text-bone-200 p-6">
               <div className="flex justify-between items-start mb-3">
-                <h3 className="font-display font-bold text-xl text-white">{item.clientName}</h3>
-                <span className="bg-mint text-ink font-mono text-xs font-bold px-3 py-1 rounded-full uppercase">
+                <h3 className="font-display font-extrabold text-xl text-bone">{item.clientName}</h3>
+                <span className="bg-gold text-ink text-xs font-bold px-3 py-1 uppercase">
                   {item.type === 'web' ? 'Web' : 'Instalación'}
                 </span>
               </div>
@@ -433,21 +432,21 @@ const UnifiedReviewsSection = () => {
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
-                <span className="font-mono text-xs text-gray-500 ml-2">
+                <span className="text-xs text-bone-400 ml-2">
                   {new Date(item.date).toLocaleDateString()}
                 </span>
               </div>
 
-              <p className="text-gray-300 mb-4">{item.reviewText}</p>
+              <p className="text-bone-300 mb-4">{item.reviewText}</p>
 
               {item.features?.length ? (
                 <div className="mb-4">
-                  <h4 className="font-mono text-xs uppercase tracking-wider text-mint mb-2">Características</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-gold mb-2">Características</h4>
                   <ul className="flex flex-wrap gap-2">
                     {item.features.map((f, idx) => (
                       <li
                         key={idx}
-                        className="bg-mint/10 border border-mint/20 text-mint text-xs px-3 py-1 rounded-full"
+                        className="bg-gold/10 border border-gold/30 text-gold text-xs px-3 py-1"
                       >
                         {f}
                       </li>
@@ -461,7 +460,7 @@ const UnifiedReviewsSection = () => {
                   href={item.projectUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm text-mint hover:underline inline-block mb-4"
+                  className="text-sm text-mint hover:underline inline-flex items-center min-h-[44px]"
                 >
                   Ver proyecto →
                 </a>

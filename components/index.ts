@@ -47,3 +47,5 @@ export { default as AboutUs } from "./AboutUs";
 export { default as HowWeWork } from "./HowWeWork";
 export { default as ServicePlans } from "./ServicePlans";
 export { default as AiSecurity } from "./AiSecurity";
+export { default as SaasProducts } from "./SaasProducts";
+export { default as ContactSection } from "./ContactSection";

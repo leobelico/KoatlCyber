@@ -1,0 +1,55 @@
+/* ==========================================================
+   05 · CARTEL — alto contraste, tipografía a todo volumen
+   Fuentes (Google Fonts, OFL): Big Shoulders Display (títulos) + Work Sans (texto)
+   Modo nativo: CLARO (papel y tinta). Oscuro con [data-theme="dark"]
+   o automáticamente si el sistema prefiere oscuro y no se fija tema.
+   ========================================================== */
+:root {
+  /* Color — claro (nativo) */
+  --paper: #f4f1e8;         /* fondo: papel de cartel */
+  --ink: #070b16;           /* tinta = azul noche del logo; también bordes y sombras duras */
+  --mint: #98efdc;          /* bloque principal de color */
+  --alert: #ff5b2e;         /* naranja de seguridad (como señalética): solo bloques, texto en tinta */
+  --on-mint: #070b16;
+  --on-alert: #070b16;
+  --text: #070b16;
+  --text-muted: #3d4658;    /* 8:1 sobre papel */
+  --link: #0a6556;          /* menta profundo para enlaces sobre papel */
+  --inv-accent: #98efdc;    /* menta sobre bloques invertidos */
+  --focus: #070b16;
+
+  /* Tipografía */
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-text: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-0: clamp(1rem, 0.96rem + 0.22vw, 1.0875rem);
+  --fs-1: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --fs-2: clamp(2.6rem, 1.4rem + 6vw, 6rem);
+  --fs-3: clamp(3.4rem, 1.2rem + 14vw, 10rem);
+  --fs-label: 0.8rem;
+
+  /* Espaciado / forma */
+  --s-1: 0.5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.75rem; --s-5: 4.5rem; --s-6: 6.5rem;
+  --radius-sm: 0;                 /* cero redondeo: cartel impreso */
+  --bw: 3px;                      /* grosor del borde: firma del estilo */
+  --shadow-hard: 6px 6px 0 var(--ink);
+
+  /* Movimiento (solo el letrero corredizo y el realce de botones) */
+  --ease: steps(4, end);
+  --t-fast: 120ms;
+  --t-marquee: 38s;
+}
+
+:root[data-theme="dark"] {
+  --paper: #070b16; --ink: #f4f1e8; --text: #f4f1e8; --text-muted: #b6bdcc;
+  --link: #98efdc; --inv-accent: #0a6556; --focus: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --paper: #070b16; --ink: #f4f1e8; --text: #f4f1e8; --text-muted: #b6bdcc;
+    --link: #98efdc; --inv-accent: #0a6556; --focus: #ffffff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-marquee: 0s; }
+}

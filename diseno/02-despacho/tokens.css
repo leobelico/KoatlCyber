@@ -1,0 +1,64 @@
+/* ==========================================================
+   02 · DESPACHO — claro y editorial
+   Fuentes (Google Fonts, OFL): Fraunces (títulos serif) + Source Sans 3 (texto)
+   Modo nativo: CLARO (papel cálido). Oscuro con [data-theme="dark"]
+   o automáticamente si el sistema prefiere oscuro y no se fija tema.
+   ========================================================== */
+:root {
+  /* Color — claro (nativo) */
+  --bg: #f5f1e8;            /* papel cálido: sensación de despacho, no de pantalla fría */
+  --surface: #fbf9f3;
+  --surface-2: #ebe5d6;
+  --text: #101826;          /* tinta azul-negra, hermana del azul noche del logo */
+  --text-muted: #4a5565;    /* 6.7:1 sobre --bg */
+  --accent: #98efdc;        /* menta: SOLO como marcador/relleno (nunca texto sobre papel) */
+  --accent-strong: #0a6556; /* menta profundo para texto y enlaces: 6.2:1 */
+  --on-accent: #101826;
+  --mark: #98efdc;          /* resaltador bajo palabras clave */
+  --ink-block: #070b16;     /* bloques oscuros que enmarcan el logo */
+  --rule: #d6cfbd;          /* filetes */
+  --rule-strong: #101826;
+  --focus: #101826;
+
+  /* Tipografía */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-text: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-0: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --fs-1: clamp(1.25rem, 1.1rem + 0.7vw, 1.55rem);
+  --fs-2: clamp(1.9rem, 1.4rem + 2.2vw, 3rem);
+  --fs-3: clamp(2.5rem, 1.5rem + 5vw, 5.4rem);
+  --fs-label: 0.8rem;
+  --tracking-label: 0.14em;
+
+  /* Espaciado / forma */
+  --s-1: 0.5rem; --s-2: 1rem; --s-3: 1.75rem; --s-4: 3rem; --s-5: 5rem; --s-6: 7rem;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --shadow-soft: 0 1px 0 var(--rule), 0 18px 40px -28px rgba(16, 24, 38, 0.35);
+
+  /* Movimiento */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 140ms;
+  --t-slow: 600ms;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e141f; --surface: #131b29; --surface-2: #1a2434;
+  --text: #ece8dd; --text-muted: #a7b0bd;
+  --accent: #98efdc; --accent-strong: #98efdc; --on-accent: #0e141f;
+  --mark: rgba(152, 239, 220, 0.32); --ink-block: #070b16; --rule: #26324a; --rule-strong: #ece8dd; --focus: #ffffff;
+  --shadow-soft: 0 1px 0 var(--rule), 0 18px 40px -28px rgba(0, 0, 0, 0.6);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #0e141f; --surface: #131b29; --surface-2: #1a2434;
+    --text: #ece8dd; --text-muted: #a7b0bd;
+    --accent: #98efdc; --accent-strong: #98efdc; --on-accent: #0e141f;
+    --mark: rgba(152, 239, 220, 0.32); --ink-block: #070b16; --rule: #26324a; --rule-strong: #ece8dd; --focus: #ffffff;
+    --shadow-soft: 0 1px 0 var(--rule), 0 18px 40px -28px rgba(0, 0, 0, 0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-slow: 0ms; }
+}

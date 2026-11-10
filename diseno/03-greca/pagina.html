@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KoatlCyber · Greca</title>
+<meta name="description" content="Ciberseguridad, software a la medida y productos SaaS hechos en San Luis Potosí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:400 var(--fs-0)/1.65 var(--font-text);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:var(--on-gold);padding:.75rem 1rem;z-index:99}
+.skip:focus{left:1rem}
+.wrap{width:min(1120px,100% - 2rem);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-display);font-weight:800;line-height:1.04;letter-spacing:-.025em;margin:0}
+h1{font-size:var(--fs-3)} h2{font-size:var(--fs-2)} h3{font-size:var(--fs-1);font-weight:600;letter-spacing:-.01em;line-height:1.2}
+p{margin:0}
+.muted{color:var(--text-muted)}
+.label{font:700 var(--fs-label)/1 var(--font-text);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--gold-text)}
+
+/* Greca: tira de escalones (SVG inline, usa currentColor) */
+.greca{display:block;width:100%;height:20px;color:var(--gold)}
+.greca.mint{color:var(--accent)}
+.greca.chile{color:var(--chile)}
+
+/* Botones: esquina escalonada */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 1.8rem;font:700 1rem var(--font-text);text-decoration:none;cursor:pointer;border:0;background:var(--gold);color:var(--on-gold);
+  clip-path:polygon(0 0,calc(100% - 12px) 0,calc(100% - 12px) 12px,100% 12px,100% 100%,12px 100%,12px calc(100% - 12px),0 calc(100% - 12px));transition:background var(--t-fast)}
+.btn:hover{background:var(--accent);color:var(--on-accent)}
+.btn.ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 2px var(--line-strong);clip-path:none}
+.btn.ghost:hover{box-shadow:inset 0 0 0 2px var(--accent);color:var(--accent-strong);background:transparent}
+
+/* Cabecera */
+header{border-bottom:1px solid var(--line)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.25rem 1rem;padding:.6rem 0}
+.brand img{width:56px;height:auto}
+nav{display:flex;flex-wrap:wrap}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 .9rem;text-decoration:none;font-weight:700;font-size:.92rem}
+nav a:hover{color:var(--accent-strong)}
+@media(max-width:720px){.bar{justify-content:center}nav{justify-content:center;width:100%}.bar .btn{display:none}nav a{padding:0 .6rem}}
+
+/* Héroe */
+.hero{padding:var(--s-5) 0}
+.hero .wrap{display:grid;gap:var(--s-4);align-items:center}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.1fr .9fr}}
+.hero h1{margin:var(--s-2) 0 var(--s-3)}
+.hero h1 span{color:var(--accent-strong)}
+.lead{font-size:var(--fs-1);color:var(--text-muted);max-width:34rem}
+.cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:var(--s-4)}
+.temple{width:100%;max-width:440px;margin-inline:auto}
+.temple .wave{stroke-dasharray:1;stroke-dashoffset:1;animation:draw var(--t-slow) var(--ease) .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.temple .wave{animation:none;stroke-dashoffset:0}}
+
+section{padding:var(--s-5) 0}
+.head{max-width:42rem;margin-bottom:var(--s-4)}
+.head h2{margin:var(--s-2) 0}
+
+/* Servicios */
+.trio{display:grid;gap:var(--s-3)}
+@media(min-width:860px){.trio{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);padding:var(--s-3);display:grid;gap:var(--s-2);align-content:start;box-shadow:var(--shadow-card);
+  clip-path:polygon(0 0,calc(100% - var(--step)) 0,calc(100% - var(--step)) var(--step),100% var(--step),100% 100%,var(--step) 100%,var(--step) calc(100% - var(--step)),0 calc(100% - var(--step)))}
+.card .ico{width:44px;height:44px;color:var(--gold)}
+.card:nth-child(2) .ico{color:var(--accent)}
+.card:nth-child(3) .ico{color:var(--chile)}
+.card ul{margin:0;padding:0;list-style:none;display:grid;gap:.4rem;color:var(--text-muted)}
+.card li{padding-left:1.2rem;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:.6em;width:.5rem;height:.5rem;background:var(--gold)}
+
+/* Productos: banda de color superior */
+.prods{display:grid;gap:var(--s-3)}
+@media(min-width:860px){.prods{grid-template-columns:repeat(3,1fr)}}
+.prod{background:var(--surface-2);display:flex;flex-direction:column}
+.prod .tag{padding:.7rem var(--s-3);font:700 var(--fs-label)/1.2 var(--font-text);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--on-gold)}
+.prod.a .tag{background:var(--gold)} .prod.b .tag{background:var(--chile);color:#1a110d} .prod.c .tag{background:var(--accent);color:#1a110d}
+.prod .body{padding:var(--s-3);display:grid;gap:var(--s-2);flex:1;align-content:start}
+.prod a.more{margin-top:auto;display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--accent-strong)}
+
+/* Seguridad */
+.principles{display:grid;gap:var(--s-3);counter-reset:p}
+@media(min-width:720px){.principles{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.principles{grid-template-columns:repeat(4,1fr)}}
+.principle{border-top:3px solid var(--gold);padding-top:var(--s-2)}
+.principle::before{counter-increment:p;content:"0" counter(p);display:block;font:800 2.4rem/1 var(--font-display);color:var(--gold-text);margin-bottom:.4rem}
+.proc{display:grid;gap:var(--s-3);margin-top:var(--s-5)}
+@media(min-width:860px){.proc{grid-template-columns:repeat(4,1fr)}}
+.proc li{list-style:none;background:var(--surface);padding:var(--s-3);border-left:6px solid var(--accent)}
+.proc ol{padding:0;margin:0;display:contents}
+.clients{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:var(--s-5)}
+@media(min-width:760px){.clients{grid-template-columns:repeat(4,1fr)}}
+.ph{display:grid;place-items:center;min-height:84px;border:2px dashed var(--line-strong);font:700 .78rem var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:.5rem}
+
+/* Contacto: bloque cálido */
+.contact{background:var(--gold);color:var(--on-gold);padding:var(--s-5) 0}
+.contact .wrap{display:grid;gap:var(--s-4)}
+@media(min-width:900px){.contact .wrap{grid-template-columns:1fr 1.1fr;gap:var(--s-5)}}
+.contact .label{color:var(--on-gold);opacity:.8}
+.contact a.i{display:flex;align-items:center;min-height:44px;font-weight:700;word-break:break-word}
+.contact form{display:grid;gap:var(--s-3);background:var(--bg);color:var(--text);padding:var(--s-3);
+  clip-path:polygon(0 0,calc(100% - var(--step)) 0,calc(100% - var(--step)) var(--step),100% var(--step),100% 100%,var(--step) 100%,var(--step) calc(100% - var(--step)),0 calc(100% - var(--step)))}
+.field{display:grid;gap:.4rem}
+.field label{font-weight:700;font-size:.9rem}
+.field input,.field select,.field textarea{width:100%;min-height:48px;padding:.65rem .8rem;background:var(--surface);color:var(--text);border:2px solid var(--line-strong);border-radius:0;font:inherit}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.contact .btn{background:var(--accent);color:var(--on-accent)}
+.contact .btn:hover{background:var(--gold);color:var(--on-gold)}
+
+footer{padding:var(--s-4) 0;color:var(--text-muted);font-size:.92rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem 2rem}
+.foot a{display:inline-flex;align-items:center;min-height:44px;margin-left:1rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#inicio" aria-label="KoatlCyber, inicio"><img src="../../public/koatlcyber.jpg" width="56" height="54" alt="KoatlCyber"></a>
+    <nav aria-label="Principal"><a href="#servicios">Servicios</a><a href="#productos">Productos</a><a href="#seguridad">Seguridad</a><a href="#contacto">Contacto</a></nav>
+    <a class="btn" href="#contacto">Hablemos</a>
+  </div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="steps" width="40" height="20" patternUnits="userSpaceOnUse"><path d="M0 16H8V10H16V4H24V10H32V16H40" fill="none" style="stroke:var(--gold)" stroke-width="3" stroke-linejoin="miter"/></pattern>
+    <pattern id="steps-mint" width="40" height="20" patternUnits="userSpaceOnUse"><path d="M0 16H8V10H16V4H24V10H32V16H40" fill="none" style="stroke:var(--accent)" stroke-width="3" stroke-linejoin="miter"/></pattern>
+    <pattern id="steps-chile" width="40" height="20" patternUnits="userSpaceOnUse"><path d="M0 16H8V10H16V4H24V10H32V16H40" fill="none" style="stroke:var(--chile)" stroke-width="3" stroke-linejoin="miter"/></pattern>
+  </defs>
+</svg>
+
+<main id="contenido">
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <p class="label">Hecho en San Luis Potosí</p>
+      <h1>Defendemos tu negocio con <span>ingenio</span> mexicano.</h1>
+      <p class="lead">Ciberseguridad, software a la medida y productos SaaS para empresas de aquí. Raíz local, estándares de cualquier lado.</p>
+      <div class="cta"><a class="btn" href="#contacto">Agenda una revisión</a><a class="btn ghost" href="#productos">Ver productos</a></div>
+    </div>
+    <svg class="temple" viewBox="0 0 400 380" fill="none" role="img" aria-label="Ilustración geométrica: una pirámide escalonada con una serpiente de línea que la rodea">
+      <g stroke-width="3" stroke-linejoin="miter">
+        <path d="M30 350H370V300H340V260H310V220H280V180H250V140H150V180H120V220H90V260H60V300H30Z" stroke="var(--gold)"/>
+        <path d="M120 350V300H150V260H180V220H220V260H250V300H280V350" stroke="var(--chile)"/>
+        <rect x="176" y="296" width="48" height="54" stroke="var(--gold)"/>
+      </g>
+      <path class="wave" pathLength="1" d="M20 120c40-50 70 50 110 0s70-50 110 0 70 50 110 0 20-30 30-30" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+      <g fill="var(--accent)"><circle cx="200" cy="100" r="6"/></g>
+      <path d="M150 140V100M250 140V100" stroke="var(--gold)" stroke-width="3"/>
+    </svg>
+  </div>
+</section>
+<svg class="greca" aria-hidden="true"><rect width="100%" height="20" fill="url(#steps)"/></svg>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="head"><p class="label">Servicios</p><h2>Tres formas de cuidar y hacer crecer tu operación.</h2><p class="muted">Hablamos claro: sin tecnicismos innecesarios y con reportes que entiendes.</p></div>
+    <div class="trio">
+      <article class="card"><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="3"><path d="M22 4l14 6v12c0 9-6 15-14 18C14 37 8 31 8 22V10z"/><path d="M15 22l5 5 9-10"/></svg>
+        <h3>Ciberseguridad</h3><ul><li>Pruebas de seguridad</li><li>Hardening de servidores y equipos</li><li>Redes seguras, WiFi y cámaras</li><li>Monitoreo y respuesta</li></ul></article>
+      <article class="card"><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="3"><path d="M14 12L4 22l10 10M30 12l10 10-10 10M25 8l-6 28"/></svg>
+        <h3>Desarrollo a la medida</h3><ul><li>Sistemas web y aplicaciones</li><li>Integraciones y automatización</li><li>Mantenimiento continuo</li></ul></article>
+      <article class="card"><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 36h32M10 36V24h8V14h8v10h8v12"/></svg>
+        <h3>Productos SaaS</h3><ul><li>Software listo para usar</li><li>IA integrada donde ayuda</li><li>Implementación y soporte local</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section id="productos" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="head"><p class="label">Productos SaaS</p><h2>Software propio para negocios locales.</h2></div>
+    <div class="prods">
+      <article class="prod a"><p class="tag">Ligas de fútbol</p><div class="body"><h3>MarcaGol</h3><p class="muted">Calendario automático, resultados en vivo, goleo, finanzas y app para jugadores.</p><a class="more" href="#contacto">Solicitar demo →</a></div></article>
+      <article class="prod b"><p class="tag">CRM inmobiliario</p><div class="body"><h3>Pórtico</h3><p class="muted">Sabe qué campaña trajo a cada lead y da seguimiento por WhatsApp, con IA.</p><a class="more" href="#contacto">Solicitar demo →</a></div></article>
+      <article class="prod c"><p class="tag">Salud y estética</p><div class="body"><h3>Citalia</h3><p class="muted">Agenda en línea, recordatorios por WhatsApp y fidelización de clientes.</p><a class="more" href="#contacto">Solicitar demo →</a></div></article>
+    </div>
+  </div>
+</section>
+<svg class="greca" aria-hidden="true"><rect width="100%" height="20" fill="url(#steps-mint)"/></svg>
+
+<section id="seguridad">
+  <div class="wrap">
+    <div class="head"><p class="label">Seguridad y confianza</p><h2>Cuatro principios en todo lo que construimos.</h2></div>
+    <div class="principles">
+      <div class="principle"><h3>Datos aislados</h3><p class="muted">Cada negocio ve únicamente su información.</p></div>
+      <div class="principle"><h3>Roles y permisos</h3><p class="muted">Cada persona accede solo a lo necesario.</p></div>
+      <div class="principle"><h3>Cifrado y bitácoras</h3><p class="muted">Para lo sensible, con registro de accesos.</p></div>
+      <div class="principle"><h3>Privacidad LFPDPPP</h3><p class="muted">Consentimiento y aviso de privacidad claros.</p></div>
+    </div>
+    <ol class="proc" style="padding:0">
+      <li><h3>1 · Diagnóstico</h3><p class="muted">Entendemos tu operación.</p></li>
+      <li><h3>2 · Pruebas</h3><p class="muted">Buscamos los puntos débiles.</p></li>
+      <li><h3>3 · Corrección</h3><p class="muted">Cerramos brechas y documentamos.</p></li>
+      <li><h3>4 · Acompañamiento</h3><p class="muted">Soporte y revisiones periódicas.</p></li>
+    </ol>
+    <div class="clients" aria-label="Clientes"><div class="ph">Logo de cliente</div><div class="ph">Logo de cliente</div><div class="ph">Logo de cliente</div><div class="ph">Logo de cliente</div></div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div>
+      <p class="label">Contacto</p>
+      <h2 style="margin:var(--s-2) 0">Platiquemos de lo que quieres proteger o construir.</h2>
+      <p style="max-width:30rem;margin-bottom:var(--s-2)">La primera conversación no tiene costo. Te respondemos en horario laboral.</p>
+      <a class="i" href="mailto:ventas@koatlcyber.com">ventas@koatlcyber.com</a>
+      <a class="i" href="tel:+524443479221">+52 444 347 9221</a>
+      <a class="i" href="https://wa.me/524443479221">Escríbenos por WhatsApp</a>
+    </div>
+    <form action="mailto:ventas@koatlcyber.com" method="post" enctype="text/plain">
+      <div class="field"><label for="n">Nombre</label><input id="n" name="nombre" autocomplete="name" required></div>
+      <div class="field"><label for="e">Correo</label><input id="e" name="correo" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="i">Me interesa</label><select id="i" name="interes"><option>Ciberseguridad</option><option>Software a la medida</option><option>MarcaGol</option><option>Pórtico</option><option>Citalia</option></select></div>
+      <div class="field"><label for="m">Mensaje</label><textarea id="m" name="mensaje" required></textarea></div>
+      <button class="btn" type="submit">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot"><p>© 2026 KoatlCyber · San Luis Potosí, México</p><p><a href="#">Aviso de privacidad</a><a href="#">Términos</a></p></div>
+</footer>
+</body>
+</html>

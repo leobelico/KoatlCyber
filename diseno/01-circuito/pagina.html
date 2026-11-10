@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KoatlCyber · Circuito</title>
+<meta name="description" content="Ciberseguridad, desarrollo de software a la medida y productos SaaS para negocios de San Luis Potosí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:400 var(--fs-0)/1.7 var(--font-display);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--on-accent);padding:.75rem 1rem;z-index:99}
+.skip:focus{left:var(--s-2)}
+.wrap{width:min(1120px,100% - 2rem);margin-inline:auto}
+.label{font:500 var(--fs-label)/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--accent-strong)}
+h1,h2,h3{font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:0}
+h1{font-size:var(--fs-3)} h2{font-size:var(--fs-2)} h3{font-size:var(--fs-1);letter-spacing:-.01em}
+p{margin:0}
+.muted{color:var(--text-muted)}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:48px;padding:0 1.6rem;border-radius:var(--radius-sm);font:700 .95rem/1 var(--font-display);text-decoration:none;border:1px solid var(--accent);cursor:pointer;transition:box-shadow var(--t-fast) var(--ease),background var(--t-fast) var(--ease),color var(--t-fast)}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{box-shadow:var(--shadow-glow)}
+.btn-line{background:transparent;color:var(--accent-strong);border-color:var(--line-strong)}
+.btn-line:hover{border-color:var(--accent-strong);background:var(--surface)}
+
+/* Cabecera */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.25rem 1rem;padding:.5rem 0}
+.brand img{width:56px;height:auto;border-radius:2px}
+nav{display:flex;flex-wrap:wrap;gap:0 .25rem}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 .8rem;text-decoration:none;font:500 .78rem/1 var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+nav a:hover{color:var(--accent-strong)}
+.bar .btn{min-height:44px;padding:0 1.1rem}
+@media (max-width:720px){.bar{justify-content:center}.bar .btn{display:none}nav{justify-content:center;order:3;width:100%}nav a{padding:0 .55rem;font-size:.7rem}}
+
+/* Héroe */
+.hero{position:relative;overflow:hidden;padding:var(--s-5) 0 var(--s-6)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:34px 34px;mask-image:radial-gradient(70% 60% at 70% 40%,#000,transparent);-webkit-mask-image:radial-gradient(70% 60% at 70% 40%,#000,transparent);pointer-events:none}
+.hero .wrap{position:relative;display:grid;gap:var(--s-4);align-items:center}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.15fr .85fr}}
+.hero h1{margin:var(--s-2) 0 var(--s-3)}
+.hero h1 em{font-style:normal;color:var(--accent-strong)}
+.hero p.lead{font-size:var(--fs-1);max-width:34rem;color:var(--text-muted)}
+.cta{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-top:var(--s-4)}
+.art{color:var(--accent-strong);max-width:420px;margin-inline:auto;width:100%}
+.art .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw var(--t-slow) var(--ease) forwards}
+.art .d2{animation-delay:.25s}.art .d3{animation-delay:.5s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.art .draw{animation:none;stroke-dashoffset:0}}
+
+section{padding:var(--s-6) 0;border-top:1px solid var(--line)}
+.head{max-width:40rem;margin-bottom:var(--s-4)}
+.head h2{margin:var(--s-2) 0}
+
+/* Servicios: filas, no tarjetas */
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;gap:var(--s-2);padding:var(--s-3) 0;border-bottom:1px solid var(--line)}
+@media(min-width:800px){.row{grid-template-columns:5rem 1fr 1.4fr;align-items:start}}
+.row .n{font:500 1rem var(--font-mono);color:var(--accent-strong)}
+.row ul{margin:0;padding:0;list-style:none;display:grid;gap:.35rem;color:var(--text-muted)}
+.row li::before{content:"";display:inline-block;width:.5rem;height:.5rem;margin-right:.7rem;background:var(--accent-strong);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+
+/* Productos */
+.grid3{display:grid;gap:var(--s-3)}
+@media(min-width:860px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.panel{position:relative;padding:var(--s-3);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);display:flex;flex-direction:column;gap:var(--s-2);transition:border-color var(--t-fast),box-shadow var(--t-fast)}
+.panel:hover{border-color:var(--line-strong);box-shadow:var(--shadow-glow)}
+.hex{width:48px;height:48px;color:var(--accent-strong)}
+.panel .for{font:500 var(--fs-label)/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-strong)}
+.panel a.more{margin-top:auto;padding-top:var(--s-2);display:inline-flex;align-items:center;min-height:44px;color:var(--accent-strong);font-weight:700;text-decoration:none}
+.panel a.more:hover{text-decoration:underline}
+
+/* Confianza */
+.split{display:grid;gap:var(--s-5)}
+@media(min-width:900px){.split{grid-template-columns:1fr 1fr}}
+.checks{list-style:none;padding:0;margin:var(--s-3) 0 0;display:grid;gap:var(--s-2)}
+.checks li{display:grid;grid-template-columns:1.5rem 1fr;gap:.75rem}
+.checks svg{width:1.4rem;height:1.4rem;color:var(--accent-strong);margin-top:.2rem}
+.steps{list-style:none;margin:var(--s-3) 0 0;padding:0 0 0 1.6rem;border-left:1px solid var(--line-strong);display:grid;gap:var(--s-3)}
+.steps li{position:relative}
+.steps li::before{content:"";position:absolute;left:calc(-1.6rem - 6px);top:.45rem;width:11px;height:11px;background:var(--bg);border:1px solid var(--accent-strong);clip-path:none;border-radius:50%}
+.clients{display:grid;gap:var(--s-2);grid-template-columns:repeat(2,1fr);margin-top:var(--s-5)}
+@media(min-width:720px){.clients{grid-template-columns:repeat(4,1fr)}}
+.ph{display:grid;place-items:center;min-height:84px;border:1px dashed var(--line-strong);border-radius:var(--radius-md);font:500 .75rem var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:.5rem}
+
+/* Contacto */
+form{display:grid;gap:var(--s-3)}
+.field{display:grid;gap:.4rem}
+.field label{font:500 var(--fs-label)/1 var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+.field input,.field select,.field textarea{width:100%;min-height:48px;padding:.7rem .1rem;background:transparent;color:var(--text);border:0;border-bottom:1px solid var(--line-strong);border-radius:0;font:inherit}
+.field select option{background:var(--surface);color:var(--text)}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-bottom-color:transparent}
+.contact-info{display:grid;gap:var(--s-2);margin-top:var(--s-3)}
+.contact-info a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--accent-strong);font-weight:700;word-break:break-word}
+
+footer{border-top:1px solid var(--line);padding:var(--s-4) 0;color:var(--text-muted);font-size:.9rem}
+.foot{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-4);justify-content:space-between;align-items:center}
+.foot nav a{color:var(--text-muted)}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#inicio" aria-label="KoatlCyber, inicio"><img src="../../public/koatlcyber.jpg" width="56" height="54" alt="KoatlCyber"></a>
+    <nav aria-label="Principal">
+      <a href="#servicios">Servicios</a><a href="#productos">Productos</a><a href="#seguridad">Seguridad</a><a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-primary" href="#contacto">Hablemos</a>
+  </div>
+</header>
+
+<main id="contenido">
+<section class="hero" id="inicio" style="border-top:0">
+  <div class="wrap">
+    <div>
+      <p class="label">San Luis Potosí · México</p>
+      <h1>Seguridad que se nota, <em>tecnología</em> que trabaja para ti.</h1>
+      <p class="lead">Protegemos tu operación, construimos el software que tu negocio necesita y operamos nuestros propios productos para empresas locales.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#contacto">Agenda una revisión</a>
+        <a class="btn btn-line" href="#productos">Conoce los productos</a>
+      </div>
+    </div>
+    <svg class="art" viewBox="0 0 400 420" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ilustración de líneas: un candado hexagonal rodeado de circuitos">
+      <polygon class="draw" pathLength="1" points="200,70 300,127 300,243 200,300 100,243 100,127"/>
+      <polygon class="draw d2" pathLength="1" points="200,110 266,148 266,224 200,262 134,224 134,148" opacity=".55"/>
+      <path class="draw d2" pathLength="1" d="M200 0v70M300 127h70l30 30M100 243H30L0 213M300 243h40v90h60M100 127H60V40H0M200 300v60h80v60"/>
+      <path class="draw d3" pathLength="1" d="M180 205v-18a20 20 0 0 1 40 0v18"/>
+      <rect class="draw d3" pathLength="1" x="172" y="205" width="56" height="42" rx="3"/>
+      <path class="draw d3" pathLength="1" d="M200 222v10"/>
+      <g fill="currentColor" stroke="none"><circle cx="370" cy="127" r="3.5"/><circle cx="30" cy="243" r="3.5"/><circle cx="400" cy="333" r="3.5"/><circle cx="0" cy="40" r="3.5"/><circle cx="280" cy="420" r="3.5"/></g>
+    </svg>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="head"><p class="label">Servicios</p><h2>Tres frentes, un mismo criterio: que tu negocio no se detenga.</h2>
+      <p class="muted">Te explicamos cada paso en lenguaje claro y entregamos reportes que se entienden.</p></div>
+    <div class="rows">
+      <article class="row"><span class="n">01</span><h3>Ciberseguridad</h3>
+        <ul><li>Pruebas de seguridad a sitios, sistemas y redes</li><li>Hardening de servidores y equipos</li><li>Redes seguras: segmentación, WiFi empresarial y cámaras</li><li>Monitoreo y respuesta ante incidentes</li></ul></article>
+      <article class="row"><span class="n">02</span><h3>Desarrollo a la medida</h3>
+        <ul><li>Sistemas web y aplicaciones para tu operación</li><li>Integraciones con WhatsApp, pagos y facturación</li><li>Mantenimiento y evolución continua</li></ul></article>
+      <article class="row"><span class="n">03</span><h3>Productos SaaS propios</h3>
+        <ul><li>Software listo para usar, con IA donde aporta</li><li>Implementación, capacitación y soporte local</li><li>Suscripción mensual, sin instalar nada</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section id="productos">
+  <div class="wrap">
+    <div class="head"><p class="label">Productos SaaS</p><h2>Software hecho para negocios de aquí.</h2></div>
+    <div class="grid3">
+      <article class="panel"><svg class="hex" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><circle cx="12" cy="12" r="3"/></svg>
+        <p class="for">Ligas de fútbol</p><h3>MarcaGol</h3>
+        <p class="muted">Calendario automático, resultados en vivo, tabla de goleo y finanzas de tu liga, con app para jugadores.</p><a class="more" href="#contacto">Solicitar demo →</a></article>
+      <article class="panel"><svg class="hex" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><path d="M8 15l3-4 2 2 3-5"/></svg>
+        <p class="for">CRM inmobiliario</p><h3>Pórtico</h3>
+        <p class="muted">Sabe qué campaña trajo a cada lead, da seguimiento por WhatsApp y apóyate en IA para no dejar enfriar ninguno.</p><a class="more" href="#contacto">Solicitar demo →</a></article>
+      <article class="panel"><svg class="hex" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><rect x="8" y="8" width="8" height="8" rx="1"/><path d="M8 11h8"/></svg>
+        <p class="for">Salud y estética</p><h3>Citalia</h3>
+        <p class="muted">Agenda en línea, recordatorios por WhatsApp y fidelización para consultorios, spas, estéticas y barberías.</p><a class="more" href="#contacto">Solicitar demo →</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="seguridad">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="label">Seguridad por diseño</p><h2 style="margin:var(--s-2) 0">Tus datos y los de tus clientes, protegidos desde el primer día.</h2>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><path d="M8 12l3 3 5-6"/></svg><span><strong>Datos aislados por cliente.</strong> <span class="muted">Cada negocio ve solo lo suyo.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><path d="M8 12l3 3 5-6"/></svg><span><strong>Roles y permisos.</strong> <span class="muted">Cada persona del equipo accede a lo necesario.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><path d="M8 12l3 3 5-6"/></svg><span><strong>Información sensible cifrada</strong> <span class="muted">y bitácoras de acceso.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><path d="M8 12l3 3 5-6"/></svg><span><strong>Privacidad conforme a la LFPDPPP.</strong> <span class="muted">Consentimiento y aviso de privacidad.</span></span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="label">Cómo trabajamos</p><h2 style="margin:var(--s-2) 0">Un proceso claro, sin tecnicismos.</h2>
+        <ol class="steps">
+          <li><h3>Diagnóstico</h3><p class="muted">Entendemos tu operación y qué debes proteger.</p></li>
+          <li><h3>Pruebas</h3><p class="muted">Buscamos puntos débiles antes que alguien más.</p></li>
+          <li><h3>Corrección</h3><p class="muted">Cerramos brechas y documentamos lo hecho.</p></li>
+          <li><h3>Acompañamiento</h3><p class="muted">Soporte y revisiones periódicas con equipo local.</p></li>
+        </ol>
+      </div>
+    </div>
+    <div class="clients" aria-label="Clientes"><div class="ph">Logo de cliente</div><div class="ph">Logo de cliente</div><div class="ph">Logo de cliente</div><div class="ph">Logo de cliente</div></div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap split">
+    <div>
+      <p class="label">Contacto</p><h2 style="margin:var(--s-2) 0">Cuéntanos qué quieres proteger o construir.</h2>
+      <p class="muted">Respondemos en horario laboral. La primera conversación no tiene costo.</p>
+      <div class="contact-info">
+        <a href="mailto:ventas@koatlcyber.com">ventas@koatlcyber.com</a>
+        <a href="tel:+524443479221">+52 444 347 9221</a>
+        <a href="https://wa.me/524443479221">Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+    <form action="mailto:ventas@koatlcyber.com" method="post" enctype="text/plain">
+      <div class="field"><label for="n">Nombre</label><input id="n" name="nombre" autocomplete="name" required></div>
+      <div class="field"><label for="e">Correo</label><input id="e" name="correo" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="i">Me interesa</label><select id="i" name="interes"><option>Ciberseguridad</option><option>Software a la medida</option><option>MarcaGol</option><option>Pórtico</option><option>Citalia</option></select></div>
+      <div class="field"><label for="m">Mensaje</label><textarea id="m" name="mensaje" required></textarea></div>
+      <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© 2026 KoatlCyber · San Luis Potosí, México</p>
+    <nav aria-label="Pie"><a href="#">Aviso de privacidad</a><a href="#">Términos</a></nav>
+  </div>
+</footer>
+</body>
+</html>
